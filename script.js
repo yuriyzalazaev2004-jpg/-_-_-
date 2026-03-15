@@ -1,28 +1,33 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  onSnapshot,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+const telegramBookingLink = "https://t.me/elena_tuatara_massag";
+const telegramChannelLink = "https://t.me/massag_tuatara";
+const vkBookingLink = "https://vk.com/massag_elena_tuatara";
+const whatsappLink = "https://wa.me/79042406833";
+const emailLink = "mailto:pevzova77@gmail.com";
+
+/*
+  =========================
+  FIREBASE НАСТРОЙКА
+  =========================
+  Чтобы отзывы сохранялись для всех пользователей:
+  1. Создай проект Firebase
+  2. Подключи Cloud Firestore
+  3. Вставь свои данные ниже
+  4. Поставь FIREBASE_ENABLED = true
+
+  Пока FIREBASE_ENABLED = false,
+  отзывы работают как локальная демо-версия в браузере.
+*/
+
+const FIREBASE_ENABLED = false;
 
 const firebaseConfig = {
-  apiKey: "ВСТАВЬ_СВОЙ_API_KEY",
-  authDomain: "ВСТАВЬ_СВОЙ_AUTH_DOMAIN",
-  projectId: "ВСТАВЬ_СВОЙ_PROJECT_ID",
-  storageBucket: "ВСТАВЬ_СВОЙ_STORAGE_BUCKET",
-  messagingSenderId: "ВСТАВЬ_СВОЙ_MESSAGING_SENDER_ID",
-  appId: "ВСТАВЬ_СВОЙ_APP_ID"
+  apiKey: "PASTE_API_KEY",
+  authDomain: "PASTE_AUTH_DOMAIN",
+  projectId: "PASTE_PROJECT_ID",
+  storageBucket: "PASTE_STORAGE_BUCKET",
+  messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
+  appId: "PASTE_APP_ID"
 };
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-const telegramBookingLink = "https://t.me/elena_tuatara_massag";
-const whatsappLink = "https://wa.me/79042406833";
 
 const services = [
   {
@@ -110,11 +115,20 @@ const certImages = Array.from({ length: 18 }, (_, i) => ({
   alt: `Диплом или сертификат ${i + 1}`
 }));
 
+function escapeHtml(str) {
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
 function renderServices() {
   const grid = document.getElementById("servicesGrid");
   if (!grid) return;
 
-  grid.innerHTML = services.map((service) => {
+  grid.innerHTML = services.map((service, index) => {
     const telegramUrl =
       `${telegramBookingLink}?text=` +
       encodeURIComponent(`Здравствуйте! Хочу записаться на услугу: ${service.title}`);
@@ -124,7 +138,7 @@ function renderServices() {
       encodeURIComponent(`Здравствуйте! Хочу записаться на услугу: ${service.title}`);
 
     return `
-      <article class="service-card">
+      <article class="service-card reveal reveal-delay-${index % 2 === 0 ? "0" : "1"}">
         ${service.category ? `<div class="service-category">${service.category}</div>` : ""}
         <h3>${service.title}</h3>
         <p>${service.text}</p>
@@ -148,6 +162,8 @@ function renderServices() {
       </article>
     `;
   }).join("");
+
+  initRevealObserver();
 }
 
 function renderSlider(trackId, items) {
@@ -166,7 +182,11 @@ function initSliderButtons() {
     button.addEventListener("click", () => {
       const track = document.getElementById(button.dataset.sliderPrev);
       if (!track) return;
-      track.scrollBy({ left: -track.clientWidth * 0.85, behavior: "smooth" });
+
+      track.scrollBy({
+        left: -track.clientWidth * 0.85,
+        behavior: "smooth"
+      });
     });
   });
 
@@ -174,7 +194,11 @@ function initSliderButtons() {
     button.addEventListener("click", () => {
       const track = document.getElementById(button.dataset.sliderNext);
       if (!track) return;
-      track.scrollBy({ left: track.clientWidth * 0.85, behavior: "smooth" });
+
+      track.scrollBy({
+        left: track.clientWidth * 0.85,
+        behavior: "smooth"
+      });
     });
   });
 }
@@ -230,44 +254,76 @@ function initBurgerMenu() {
   });
 }
 
-function escapeHtml(str) {
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function initRevealObserver() {
+  const elements = document.querySelectorAll(".reveal");
+
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach((el) => el.classList.add("active"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12
+  });
+
+  elements.forEach((el) => observer.observe(el));
 }
 
-function initReviewsRealtime() {
+/* =========================
+   ОТЗЫВЫ — ЛОКАЛЬНЫЙ РЕЖИМ
+   ========================= */
+const LOCAL_REVIEW_STORAGE_KEY = "tautara_local_reviews";
+
+function getLocalReviews() {
+  try {
+    return JSON.parse(localStorage.getItem(LOCAL_REVIEW_STORAGE_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalReview(review) {
+  const current = getLocalReviews();
+  const updated = [review, ...current].slice(0, 50);
+  localStorage.setItem(LOCAL_REVIEW_STORAGE_KEY, JSON.stringify(updated));
+}
+
+function renderLocalReviews() {
   const userReviews = document.getElementById("userReviews");
+  const reviewStatus = document.getElementById("reviewStatus");
   if (!userReviews) return;
 
-  const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+  const reviews = getLocalReviews();
 
-  onSnapshot(reviewsQuery, (snapshot) => {
-    if (snapshot.empty) {
-      userReviews.innerHTML = `<div class="muted">Пока отзывов нет. Будьте первым(ой).</div>`;
-      return;
-    }
+  reviewStatus.textContent =
+    "Сейчас работает локальный режим. Чтобы отзывы видели все пользователи, подключите Firebase в script.js.";
 
-    userReviews.innerHTML = snapshot.docs.map((doc) => {
-      const data = doc.data();
-      return `
-        <div class="user-review">
-          <strong>${escapeHtml(data.name || "Гость")}</strong>
-          <div>${escapeHtml(data.message || "")}</div>
-        </div>
-      `;
-    }).join("");
-  });
+  if (!reviews.length) {
+    userReviews.innerHTML = `<div class="muted">Пока отзывов нет. Будьте первым(ой).</div>`;
+    return;
+  }
+
+  userReviews.innerHTML = reviews.map((item) => `
+    <div class="user-review">
+      <strong>${escapeHtml(item.name)}</strong>
+      <div>${escapeHtml(item.message)}</div>
+    </div>
+  `).join("");
 }
 
-function initReviewForm() {
+function initLocalReviewForm() {
   const form = document.getElementById("reviewForm");
+  const submitBtn = document.getElementById("reviewSubmitBtn");
   if (!form) return;
 
-  form.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const nameInput = document.getElementById("reviewName");
@@ -278,31 +334,126 @@ function initReviewForm() {
 
     if (!name || !message) return;
 
-    const submitButton = form.querySelector("button[type='submit']");
-    submitButton.disabled = true;
-    submitButton.textContent = "Отправка...";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Отправка...";
 
-    try {
-      await addDoc(collection(db, "reviews"), {
-        name,
-        message,
-        createdAt: serverTimestamp()
-      });
+    saveLocalReview({
+      name,
+      message,
+      createdAt: Date.now()
+    });
 
-      form.reset();
-      alert("Спасибо! Ваш отзыв отправлен.");
-    } catch (error) {
-      console.error(error);
-      alert("Не удалось отправить отзыв. Проверьте настройки Firebase.");
-    } finally {
-      submitButton.disabled = false;
-      submitButton.textContent = "Отправить отзыв";
-    }
+    form.reset();
+    renderLocalReviews();
+
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Отправить отзыв";
+
+    alert("Отзыв добавлен. Сейчас он сохраняется локально в браузере.");
   });
+}
+
+/* =========================
+   ОТЗЫВЫ — FIREBASE РЕЖИМ
+   ========================= */
+async function initFirebaseReviews() {
+  const reviewStatus = document.getElementById("reviewStatus");
+  const userReviews = document.getElementById("userReviews");
+  const form = document.getElementById("reviewForm");
+  const submitBtn = document.getElementById("reviewSubmitBtn");
+
+  if (!reviewStatus || !userReviews || !form) return;
+
+  try {
+    const firebaseAppModule = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js");
+    const firestoreModule = await import("https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js");
+
+    const { initializeApp } = firebaseAppModule;
+    const {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      orderBy,
+      onSnapshot,
+      serverTimestamp
+    } = firestoreModule;
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    reviewStatus.textContent = "Отзывы сохраняются в базе данных и видны всем пользователям.";
+
+    const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+
+    onSnapshot(reviewsQuery, (snapshot) => {
+      if (snapshot.empty) {
+        userReviews.innerHTML = `<div class="muted">Пока отзывов нет. Будьте первым(ой).</div>`;
+        return;
+      }
+
+      userReviews.innerHTML = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return `
+          <div class="user-review">
+            <strong>${escapeHtml(data.name || "Гость")}</strong>
+            <div>${escapeHtml(data.message || "")}</div>
+          </div>
+        `;
+      }).join("");
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const nameInput = document.getElementById("reviewName");
+      const messageInput = document.getElementById("reviewMessage");
+
+      const name = nameInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (!name || !message) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Отправка...";
+
+      try {
+        await addDoc(collection(db, "reviews"), {
+          name,
+          message,
+          createdAt: serverTimestamp()
+        });
+
+        form.reset();
+      } catch (error) {
+        console.error(error);
+        alert("Не удалось отправить отзыв. Проверьте настройки Firebase.");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Отправить отзыв";
+      }
+    });
+  } catch (error) {
+    console.error(error);
+    reviewStatus.textContent =
+      "Firebase не удалось подключить. Включён локальный режим отзывов.";
+    renderLocalReviews();
+    initLocalReviewForm();
+  }
+}
+
+function initReviews() {
+  if (FIREBASE_ENABLED) {
+    initFirebaseReviews();
+  } else {
+    renderLocalReviews();
+    initLocalReviewForm();
+  }
 }
 
 function init() {
   renderServices();
+
   renderSlider("reviewsSlider", reviewImages);
   renderSlider("resultsSlider", resultImages);
   renderSlider("cabinetSlider", cabinetImages);
@@ -311,8 +462,8 @@ function init() {
   initSliderButtons();
   initLightbox();
   initBurgerMenu();
-  initReviewsRealtime();
-  initReviewForm();
+  initRevealObserver();
+  initReviews();
 }
 
 document.addEventListener("DOMContentLoaded", init);
