@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ТАУТАРА — массажный салон Елены Певцовой</title>
+  <meta
+    name="description"
+    content="Массажный салон ТАУТАРА. Массажные услуги, абонементы, подарочные сертификаты, отзывы, результаты, запись в Telegram, VK и WhatsApp."
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#top" class="logo-wrap">
+        <img src="images/logo.png" alt="Логотип ТАУТАРА" class="site-logo" />
+        <span class="logo-text">ТАУТАРА</span>
+      </a>
+
+      <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="mainNav">
+        <a href="#about-massage">О массаже</a>
+        <a href="#services">Услуги</a>
+        <a href="#master">Мастер</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#results">Результаты</a>
+        <a href="#cabinet">Кабинет</a>
+        <a href="#certs">Дипломы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <a
+        class="btn btn-primary desktop-book"
+        href="https://t.me/elena_tuatara_massag"
+        target="_blank"
+        rel="noopener"
+      >
+        Записаться
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content-card">
+          <span class="eyebrow">Массажный салон</span>
+          <h1>массажный салон ТАУТАРА</h1>
+          <p class="lead">
+            Елена Певцова — мастер массажа с медицинским образованием.
+          </p>
+          <p class="hero-quote">
+            «Работаю авторской методикой, совмещая разные виды массажа
+            для более эффективного и стойкого результата»
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="btn btn-primary"
+              href="https://t.me/elena_tuatara_massag"
+              target="_blank"
+              rel="noopener"
+            >
+              Запись в Telegram
+            </a>
+            <a
+              class="btn btn-secondary"
+              href="https://wa.me/79042406833"
+              target="_blank"
+              rel="noopener"
+            >
+              Написать в WhatsApp
+            </a>
+          </div>
+
+          <div class="hero-points">
+            <div class="point">
+              <strong>Индивидуальный подход</strong>
+              <span>Подбор процедуры под Ваш запрос</span>
+            </div>
+            <div class="point">
+              <strong>Медицинское образование</strong>
+              <span>Внимание к здоровью и самочувствию</span>
+            </div>
+            <div class="point">
+              <strong>Комфортный кабинет</strong>
+              <span>Чисто, тепло, светло и спокойно</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-photo-card">
+          <img src="images/hero.jpg" alt="Массажный салон ТАУТАРА" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about-massage">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">О массаже</span>
+            <h2>Что такое массаж</h2>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="text-card">
+            <p>
+              Массаж — это техника физического воздействия на тело, которая используется
+              для расслабления мышц, улучшения кровообращения и общего состояния организма.
+            </p>
+            <p>
+              Массаж является оздоровительной процедурой и профилактикой многих заболеваний.
+            </p>
+          </div>
+
+          <div class="vertical-card">
+            <img src="images/subscription.jpg" alt="Абонемент на массаж" />
+            <div class="vertical-card-body">
+              <p>
+                При покупке абонемента стоимость одного сеанса становится выгоднее,
+                чем при разовом посещении.
+              </p>
+              <p>
+                Чем регулярнее процедуры, тем заметнее результат. Курс массажа помогает
+                закрепить результат и получить более выраженный эффект от процедур.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Услуги</span>
+            <h2>Массажные услуги</h2>
+          </div>
+          <p class="lead small-lead">
+            Выберите подходящую процедуру и сразу перейдите к записи.
+          </p>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="gift">
+      <div class="container">
+        <div class="gift-layout">
+          <div class="gift-image-card">
+            <img src="images/gift-certificate.jpg" alt="Подарочный сертификат" />
+          </div>
+          <div class="gift-text-card">
+            <span class="eyebrow">Подарочный сертификат</span>
+            <h2>Покупка подарочного сертификата</h2>
+            <p>
+              Подарочный сертификат можно оформить на любую сумму офлайн или онлайн.
+            </p>
+            <p>
+              Срок действия сертификата 3 месяца.
+            </p>
+
+            <div class="hero-actions gift-actions">
+              <a
+                class="btn btn-primary"
+                href="https://t.me/elena_tuatara_massag"
+                target="_blank"
+                rel="noopener"
+              >
+                Оформить в Telegram
+              </a>
+              <a
+                class="btn btn-secondary"
+                href="https://wa.me/79042406833"
+                target="_blank"
+                rel="noopener"
+              >
+                Оформить в WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="master">
+      <div class="container master-grid">
+        <div class="master-photo-card">
+          <img src="images/master.jpg" alt="Елена Певцова" />
+        </div>
+
+        <div class="master-text-card">
+          <span class="eyebrow">О мастере</span>
+          <h2>Мастер массажа с медицинским образованием</h2>
+          <h3 class="master-name">Елена Певцова</h3>
+          <p class="master-quote">
+            «Работаю авторской методикой, совмещая разные виды массажа
+            для более эффективного и стойкого результата»
+          </p>
+
+          <div class="master-features">
+            <div class="point">
+              <strong>Авторская методика</strong>
+              <span>Сочетание разных техник для лучшего результата</span>
+            </div>
+            <div class="point">
+              <strong>Оздоровительный подход</strong>
+              <span>Внимание к телу, самочувствию и регулярности процедур</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Отзывы</span>
+            <h2>Отзывы клиентов</h2>
+          </div>
+          <p class="lead small-lead">
+            Можно листать фотографии и оставлять новые отзывы.
+          </p>
+        </div>
+
+        <div class="slider-block">
+          <button class="slider-btn prev" data-slider-prev="reviewsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="reviewsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="reviewsSlider" aria-label="Вперёд">›</button>
+        </div>
+
+        <div class="review-form-card">
+          <h3>Оставить отзыв</h3>
+          <p class="muted">
+            Отзывы ниже будут сохраняться в базе и отображаться для других посетителей сайта.
+          </p>
+
+          <form id="reviewForm" class="review-form">
+            <input class="input" type="text" id="reviewName" placeholder="Ваше имя" required />
+            <textarea class="textarea" id="reviewMessage" placeholder="Ваш отзыв" required></textarea>
+            <button class="btn btn-primary" type="submit">Отправить отзыв</button>
+          </form>
+
+          <div id="userReviews" class="user-reviews"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Результаты</span>
+            <h2>Результаты процедур</h2>
+          </div>
+          <p class="lead small-lead">Можно листать фотографии.</p>
+        </div>
+
+        <div class="slider-block">
+          <button class="slider-btn prev" data-slider-prev="resultsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="resultsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="resultsSlider" aria-label="Вперёд">›</button>
+        </div>
+
+        <div class="text-card results-text">
+          <p>
+            Результаты бывают видимые, которые можно посмотреть здесь ⬆️ и не видимые —
+            это улучшение общего самочувствия, улучшение памяти, снятие головных болей,
+            улучшение настроения, налаживание бодрости днëм и крепкого сна ночью и многое другое,
+            которое можно подтвердить биохимическим анализом, снижается кортизол,
+            налаживается работа эндокринной системы, на рентгене и МРТ улучшения и т. д.
+          </p>
+          <p class="result-question">А что ожидаете Вы от массажа?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cabinet">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Кабинет</span>
+            <h2>Массажист ждëт Вас в чистом, тëплом, светлом кабинете</h2>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <button class="slider-btn prev" data-slider-prev="cabinetSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="cabinetSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="cabinetSlider" aria-label="Вперёд">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certs">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Квалификация</span>
+            <h2>Дипломы и сертификаты</h2>
+          </div>
+          <p class="lead small-lead">Можно листать фотографии.</p>
+        </div>
+
+        <div class="slider-block">
+          <button class="slider-btn prev" data-slider-prev="certsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="certsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="certsSlider" aria-label="Вперёд">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contacts">
+      <div class="container contact-layout">
+        <div class="contact-card">
+          <span class="eyebrow">Контакты</span>
+          <h2>Запись и связь</h2>
+
+          <div class="contact-list">
+            <a href="tel:+79042406833" class="contact-item">+7 (904) 240-68-33</a>
+            <a href="mailto:pevzova77@gmail.com" class="contact-item">pevzova77@gmail.com</a>
+            <div class="contact-item">г. Москва, ул. Беговая, д. 6</div>
+          </div>
+
+          <div class="social-links">
+            <a class="social-btn" href="https://t.me/elena_tuatara_massag" target="_blank" rel="noopener">Telegram запись</a>
+            <a class="social-btn" href="https://t.me/massag_tuatara" target="_blank" rel="noopener">Telegram канал</a>
+            <a class="social-btn" href="https://vk.com/massag_elena_tuatara" target="_blank" rel="noopener">VK запись</a>
+            <a class="social-btn" href="https://wa.me/79042406833" target="_blank" rel="noopener">WhatsApp запись</a>
+            <a class="social-btn" href="mailto:pevzova77@gmail.com">Gmail</a>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <iframe
+            title="Карта"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%206&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">×</button>
+    <img id="lightboxImage" src="" alt="Увеличенное изображение" />
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 ТАУТАРА — Елена Певцова</div>
+      <div>Массажный салон в Москве</div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
