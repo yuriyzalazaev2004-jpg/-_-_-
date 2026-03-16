@@ -138,7 +138,7 @@ h2 {
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1.2;
 }
 
@@ -343,7 +343,8 @@ h3 {
 .master-text-card,
 .review-form-card,
 .contact-card,
-.map-card {
+.map-card,
+.price-card {
   background: rgba(255, 255, 255, 0.86);
   border: 1px solid rgba(255,255,255,0.65);
   border-radius: calc(var(--radius) + 4px);
@@ -493,10 +494,6 @@ h3 {
   box-shadow: 0 18px 38px rgba(0, 0, 0, 0.1);
 }
 
-.service-card h3 {
-  font-size: 22px;
-}
-
 .service-card p {
   color: var(--muted);
 }
@@ -523,39 +520,6 @@ h3 {
   width: fit-content;
 }
 
-.service-meta {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.service-time {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: #f3eee6;
-  color: var(--accent-dark);
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.service-price-list {
-  display: grid;
-  gap: 8px;
-  padding-top: 10px;
-  border-top: 1px solid var(--line);
-}
-
-.service-price-row {
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: linear-gradient(180deg, #fcfbf8 0%, #f7f4ef 100%);
-  border: 1px solid var(--line);
-  font-weight: 600;
-}
-
 .service-actions {
   display: flex;
   gap: 10px;
@@ -564,7 +528,7 @@ h3 {
 }
 
 .service-actions .btn {
-  flex: 1 1 140px;
+  flex: 1 1 130px;
 }
 
 .hidden-service {
@@ -579,7 +543,7 @@ h3 {
 
 .hidden-service.show {
   opacity: 1;
-  max-height: 1200px;
+  max-height: 900px;
   padding: 18px;
   border-width: 1px;
   pointer-events: auto;
@@ -607,6 +571,35 @@ h3 {
 
 .show-more-btn:hover {
   transform: translateY(-2px);
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.price-card {
+  padding: 22px;
+}
+
+.price-card h3 {
+  margin-bottom: 14px;
+}
+
+.price-list {
+  display: grid;
+  gap: 8px;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #fcfbf8 0%, #f7f4ef 100%);
+  border: 1px solid var(--line);
 }
 
 .gift-layout {
@@ -898,7 +891,6 @@ h3 {
   flex-wrap: wrap;
 }
 
-/* reveal */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -914,10 +906,6 @@ h3 {
 
 .reveal-delay-1 {
   transition-delay: 0.12s;
-}
-
-.reveal-delay-2 {
-  transition-delay: 0.2s;
 }
 
 @keyframes fadeInUp {
@@ -956,7 +944,8 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  .services-grid {
+  .services-grid,
+  .price-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1049,16 +1038,26 @@ h3 {
   .gift-text-card,
   .master-text-card,
   .review-form-card,
-  .contact-card {
+  .contact-card,
+  .price-card {
     padding: 20px;
   }
 
-  .services-grid {
+  .services-grid,
+  .price-grid {
     grid-template-columns: 1fr;
   }
 
   .service-actions {
-    flex-direction: column;
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .service-actions .btn {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
+    flex: 1 1 auto;
   }
 
   .slider-block {
