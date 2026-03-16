@@ -1,23 +1,16 @@
 const telegramBookingLink = "https://t.me/elena_tuatara_massag";
-const telegramChannelLink = "https://t.me/massag_tuatara";
-const vkBookingLink = "https://vk.com/massag_elena_tuatara";
 const whatsappLink = "https://wa.me/79042406833";
-const emailLink = "mailto:pevzova77@gmail.com";
 
 /*
-  =========================
-  FIREBASE НАСТРОЙКА
-  =========================
-  Чтобы отзывы сохранялись для всех пользователей:
-  1. Создай проект Firebase
-  2. Подключи Cloud Firestore
+  Чтобы отзывы были видны всем пользователям:
+  1. Создай Firebase проект
+  2. Включи Cloud Firestore
   3. Вставь свои данные ниже
-  4. Поставь FIREBASE_ENABLED = true
+  4. Поменяй FIREBASE_ENABLED на true
 
   Пока FIREBASE_ENABLED = false,
-  отзывы работают как локальная демо-версия в браузере.
+  отзывы работают в локальном демо-режиме.
 */
-
 const FIREBASE_ENABLED = false;
 
 const firebaseConfig = {
@@ -137,9 +130,15 @@ function renderServices() {
       `${whatsappLink}?text=` +
       encodeURIComponent(`Здравствуйте! Хочу записаться на услугу: ${service.title}`);
 
+    const hiddenClass = index >= 3 ? "hidden-service" : "";
+    const delayClass = index % 2 === 0 ? "reveal-delay-0" : "reveal-delay-1";
+
     return `
-      <article class="service-card reveal reveal-delay-${index % 2 === 0 ? "0" : "1"}">
+      <article class="service-card reveal ${delayClass} ${hiddenClass}">
+        <img class="service-photo" src="images/services/service-${index + 1}.jpg" alt="${service.title}" />
+
         ${service.category ? `<div class="service-category">${service.category}</div>` : ""}
+
         <h3>${service.title}</h3>
         <p>${service.text}</p>
 
@@ -164,6 +163,30 @@ function renderServices() {
   }).join("");
 
   initRevealObserver();
+  initShowMore();
+}
+
+function initShowMore() {
+  const btn = document.getElementById("showMoreBtn");
+  if (!btn) return;
+
+  const hiddenCards = [...document.querySelectorAll(".hidden-service")];
+
+  if (!hiddenCards.length) {
+    btn.style.display = "none";
+    return;
+  }
+
+  btn.addEventListener("click", () => {
+    hiddenCards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add("show");
+        card.classList.add("active");
+      }, index * 70);
+    });
+
+    btn.style.display = "none";
+  });
 }
 
 function renderSlider(trackId, items) {
@@ -273,12 +296,14 @@ function initRevealObserver() {
     threshold: 0.12
   });
 
-  elements.forEach((el) => observer.observe(el));
+  elements.forEach((el) => {
+    if (!el.classList.contains("hidden-service")) {
+      observer.observe(el);
+    }
+  });
 }
 
-/* =========================
-   ОТЗЫВЫ — ЛОКАЛЬНЫЙ РЕЖИМ
-   ========================= */
+/* Локальный режим отзывов */
 const LOCAL_REVIEW_STORAGE_KEY = "tautara_local_reviews";
 
 function getLocalReviews() {
@@ -353,9 +378,7 @@ function initLocalReviewForm() {
   });
 }
 
-/* =========================
-   ОТЗЫВЫ — FIREBASE РЕЖИМ
-   ========================= */
+/* Firebase режим отзывов */
 async function initFirebaseReviews() {
   const reviewStatus = document.getElementById("reviewStatus");
   const userReviews = document.getElementById("userReviews");

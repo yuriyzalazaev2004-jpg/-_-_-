@@ -3,21 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ТАУТАРА — массажный салон</title>
+  <title>ТАУТАРА — массажный кабинет</title>
   <meta
     name="description"
-    content="Массажный салон ТАУТАРА. Массажные услуги, результаты, отзывы, подарочные сертификаты, запись в Telegram, VK и WhatsApp."
+    content="Массажный кабинет ТАУТАРА. Массажные услуги, подарочные сертификаты, отзывы, результаты, запись в Telegram, VK, WhatsApp и MAX."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="top-contacts">
+    <div class="container top-contacts-inner">
+      <a href="tel:+79042406833">+7 (904) 240-68-33</a>
+      <a href="mailto:pevzova77@gmail.com">pevzova77@gmail.com</a>
+      <a href="https://t.me/elena_tuatara_massag" target="_blank" rel="noopener">Telegram запись</a>
+      <a href="https://t.me/massag_tuatara" target="_blank" rel="noopener">Telegram канал</a>
+      <a href="https://vk.com/massag_elena_tuatara" target="_blank" rel="noopener">VK запись</a>
+      <a href="https://wa.me/79042406833" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" rel="noopener">MAX</a>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container header-inner">
       <a href="#top" class="brand">
         <img src="images/logo.png" alt="Логотип ТАУТАРА" class="brand-logo" />
         <div class="brand-text">
           <span class="brand-title">ТАУТАРА</span>
-          <span class="brand-subtitle">массажный салон</span>
+          <span class="brand-subtitle">массажный кабинет</span>
         </div>
       </a>
 
@@ -54,16 +66,15 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-content-card reveal">
-          <span class="eyebrow">Массажный салон</span>
-          <h1>массажный салон ТАУТАРА</h1>
+          <span class="eyebrow">Массажный кабинет</span>
+          <h1>массажный кабинет ТАУТАРА</h1>
 
           <p class="lead">
             Елена Певцова — мастер массажа с медицинским образованием.
           </p>
 
           <p class="hero-quote">
-            «Работаю авторской методикой, совмещая разные виды массажа
-            для более эффективного и стойкого результата»
+            «Работаю с акцентом на выраженный эффект и улучшение самочувствия»
           </p>
 
           <div class="hero-actions">
@@ -84,6 +95,23 @@
             >
               WhatsApp
             </a>
+
+            <a
+              class="btn btn-secondary"
+              href="https://vk.com/massag_elena_tuatara"
+              target="_blank"
+              rel="noopener"
+            >
+              VK
+            </a>
+
+            <a
+              class="btn btn-secondary"
+              href="#"
+              rel="noopener"
+            >
+              MAX
+            </a>
           </div>
 
           <div class="hero-points">
@@ -93,8 +121,8 @@
             </div>
 
             <div class="point">
-              <strong>Авторская методика</strong>
-              <span>Комбинация техник для стойкого результата</span>
+              <strong>Выраженный эффект</strong>
+              <span>Работа на улучшение самочувствия и состояния тела</span>
             </div>
 
             <div class="point">
@@ -105,7 +133,7 @@
         </div>
 
         <div class="hero-photo-card reveal reveal-delay-1">
-          <img src="images/hero.jpg" alt="Массажный салон ТАУТАРА" />
+          <img src="images/hero.jpg" alt="Массажный кабинет ТАУТАРА" />
         </div>
       </div>
     </section>
@@ -135,6 +163,7 @@
             <img src="images/subscription.jpg" alt="Абонемент на массаж" />
             <div class="vertical-card-body">
               <p>
+                <span class="sale">АКЦИЯ</span>
                 При покупке абонемента стоимость одного сеанса становится выгоднее,
                 чем при разовом посещении.
               </p>
@@ -157,11 +186,19 @@
             <h2>Массажные услуги</h2>
           </div>
           <p class="lead small-lead">
-            Выберите подходящую процедуру и сразу перейдите к записи.
+            Выберите подходящую процедуру и перейдите к записи.
           </p>
         </div>
 
+        <div class="service-photo-note reveal">
+          Для фото услуг лучше использовать горизонтальные изображения размером
+          <strong>1600 × 900 px</strong> в формате JPG.
+        </div>
+
         <div class="services-grid" id="servicesGrid"></div>
+        <div class="show-more-wrap reveal">
+          <button class="show-more-btn" id="showMoreBtn" type="button">Показать ещё</button>
+        </div>
       </div>
     </section>
 
@@ -173,7 +210,6 @@
           </div>
 
           <div class="gift-text-card reveal reveal-delay-1">
-            <span class="eyebrow">Подарочный сертификат</span>
             <h2>Покупка подарочного сертификата</h2>
 
             <p>
@@ -200,7 +236,15 @@
                 target="_blank"
                 rel="noopener"
               >
-                Оформить в WhatsApp
+                WhatsApp
+              </a>
+
+              <a
+                class="btn btn-secondary"
+                href="#"
+                rel="noopener"
+              >
+                MAX
               </a>
             </div>
           </div>
@@ -220,19 +264,18 @@
           <h3 class="master-name">Елена Певцова</h3>
 
           <p class="master-quote">
-            «Работаю авторской методикой, совмещая разные виды массажа
-            для более эффективного и стойкого результата»
+            «Выраженный эффект и улучшение самочувствия — главная цель каждой процедуры»
           </p>
 
           <div class="master-features">
             <div class="point">
-              <strong>Авторская методика</strong>
-              <span>Сочетание разных видов массажа под запрос клиента</span>
+              <strong>Выраженный эффект</strong>
+              <span>Комплексная работа под запрос клиента</span>
             </div>
 
             <div class="point">
-              <strong>Выраженный эффект</strong>
-              <span>Работа на расслабление, восстановление и самочувствие</span>
+              <strong>Улучшение самочувствия</strong>
+              <span>Расслабление, восстановление и ощущение лёгкости</span>
             </div>
           </div>
         </div>
@@ -243,13 +286,8 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Отзывы</span>
             <h2>Отзывы клиентов</h2>
           </div>
-
-          <p class="lead small-lead">
-            Можно листать фотографии и оставлять новые отзывы.
-          </p>
         </div>
 
         <div class="slider-block reveal">
@@ -266,7 +304,7 @@
           <h3>Оставить отзыв</h3>
           <p class="muted">
             Если подключить Firebase, отзывы будут сохраняться на сайте и их увидят другие пользователи.
-            Пока Firebase не подключён, форма работает как локальная демо-версия.
+            Пока база не подключена, работает локальный демо-режим.
           </p>
 
           <form id="reviewForm" class="review-form">
@@ -285,11 +323,8 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Результаты</span>
             <h2>Результаты процедур</h2>
           </div>
-
-          <p class="lead small-lead">Можно листать фотографии.</p>
         </div>
 
         <div class="slider-block reveal">
@@ -320,7 +355,6 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Кабинет</span>
             <h2>Массажист ждёт Вас в чистом, тёплом, светлом кабинете</h2>
           </div>
         </div>
@@ -341,11 +375,8 @@
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <span class="eyebrow">Квалификация</span>
             <h2>Дипломы и сертификаты</h2>
           </div>
-
-          <p class="lead small-lead">Можно листать фотографии.</p>
         </div>
 
         <div class="slider-block reveal">
@@ -376,8 +407,9 @@
             <a class="social-btn" href="https://t.me/elena_tuatara_massag" target="_blank" rel="noopener">Telegram запись</a>
             <a class="social-btn" href="https://t.me/massag_tuatara" target="_blank" rel="noopener">Telegram канал</a>
             <a class="social-btn" href="https://vk.com/massag_elena_tuatara" target="_blank" rel="noopener">VK запись</a>
-            <a class="social-btn" href="https://wa.me/79042406833" target="_blank" rel="noopener">WhatsApp запись</a>
+            <a class="social-btn" href="https://wa.me/79042406833" target="_blank" rel="noopener">WhatsApp</a>
             <a class="social-btn" href="mailto:pevzova77@gmail.com">Gmail</a>
+            <a class="social-btn" href="#">MAX</a>
           </div>
         </div>
 
@@ -401,7 +433,7 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>© 2026 ТАУТАРА — Елена Певцова</div>
-      <div>Массажный салон в Москве</div>
+      <div>Массажный кабинет в Москве</div>
     </div>
   </footer>
 
