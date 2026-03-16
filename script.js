@@ -102,10 +102,17 @@ function renderServices() {
 
     const hiddenClass = index >= 3 ? "hidden-service" : "";
     const delayClass = index % 2 === 0 ? "" : "reveal-delay-1";
+    const serviceImagePath = `./images/service/service-${index + 1}.jpg`;
 
     return `
       <article class="service-card reveal ${delayClass} ${hiddenClass}">
-        <img class="service-photo" src="image/service/service-${index + 1}.jpg" alt="${service.title}" />
+        <img
+          class="service-photo"
+          src="${serviceImagePath}"
+          alt="${service.title}"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='./images/hero.jpg';"
+        />
 
         ${service.category ? `<div class="service-category">${service.category}</div>` : ""}
 

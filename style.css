@@ -482,12 +482,6 @@ h3 {
   font-size: 22px;
 }
 
-.service-photo-note {
-  margin-bottom: 18px;
-  color: var(--muted);
-  font-size: 15px;
-}
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
