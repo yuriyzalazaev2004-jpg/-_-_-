@@ -105,7 +105,7 @@ function renderServices() {
 
     return `
       <article class="service-card reveal ${delayClass} ${hiddenClass}">
-        <img class="service-photo" src="images/services/service-${index + 1}.jpg" alt="${service.title}" />
+        <img class="service-photo" src="image/service/service-${index + 1}.jpg" alt="${service.title}" />
 
         ${service.category ? `<div class="service-category">${service.category}</div>` : ""}
 
