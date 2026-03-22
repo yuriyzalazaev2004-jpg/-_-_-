@@ -1,6 +1,3 @@
-const telegramBookingLink = "https://t.me/elena_tuatara_massag";
-const whatsappLink = "https://wa.me/79042406833";
-
 const FIREBASE_ENABLED = false;
 
 const firebaseConfig = {
@@ -12,49 +9,129 @@ const firebaseConfig = {
   appId: "PASTE_APP_ID"
 };
 
+const cityConfigs = {
+  moscow: {
+    label: "Москва",
+    badge: "Москва",
+    address: "г. Москва, ул. Беговая, д. 6",
+    shortAddress: "ул. Беговая, д. 6",
+    yandexMap: "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.%206",
+    dikidi: "https://dikidi.net/#widget=206531",
+    prices: {
+      45: "3000 ₽",
+      60: "3500 ₽",
+      90: "5000 ₽",
+      120: "6500 ₽"
+    }
+  },
+  saratov: {
+    label: "Саратов",
+    badge: "Саратов",
+    address: "г. Саратов, ул. Кузнецова, д. 7",
+    shortAddress: "ул. Кузнецова, д. 7",
+    yandexMap: "https://yandex.ru/maps/?text=%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BE%D0%B2%D0%B0%2C%20%D0%B4.%207",
+    dikidi: "https://dikidi.net/#widget=206528",
+    prices: {
+      30: "1500 ₽",
+      45: "2250 ₽",
+      60: "3000 ₽",
+      75: "3500 ₽",
+      90: "4000 ₽",
+      120: "5000 ₽"
+    }
+  }
+};
+
+const baseLinks = {
+  telegram: "https://t.me/elena_tuatara_massag",
+  whatsapp: "https://wa.me/79042406833",
+  max: "https://max.ru/u/f9LHodD0cOLbVHM9ql3WQbXqbwl_xBhF61Ipdc6W-UP6LQ_kdhzG-kq2bZY",
+  vk: "https://vk.com/massag_elena_tuatara"
+};
+
 const services = [
   {
     title: "Общий массаж всего тела",
-    text: "Расслабляет мышцы, снимает напряжение, улучшает кровообращение и общее самочувствие."
+    text: "Расслабляет мышцы, снимает напряжение, улучшает кровообращение и общее самочувствие.",
+    durations: {
+      moscow: [60, 90, 120],
+      saratov: [60, 75, 90, 120]
+    }
   },
   {
     title: "Массаж тела и лица",
-    text: "Комплексный уход для полного расслабления тела и улучшения тонуса кожи лица."
+    text: "Комплексный уход для полного расслабления тела и улучшения тонуса кожи лица.",
+    durations: {
+      moscow: [90, 120],
+      saratov: [75, 90, 120]
+    }
   },
   {
     title: "Массаж спины",
-    text: "Снимает напряжение в области спины, шеи и плеч, помогает уменьшить дискомфорт и усталость."
+    text: "Снимает напряжение в области спины, шеи и плеч, помогает уменьшить дискомфорт и усталость.",
+    durations: {
+      moscow: [45, 60],
+      saratov: [30, 45, 60]
+    }
   },
   {
     title: "Антицеллюлитный моделирующий массаж",
     category: "Коррекция фигуры",
-    text: "Стимулирует кровообращение, улучшает состояние кожи и помогает скорректировать контуры тела."
+    text: "Стимулирует кровообращение, улучшает состояние кожи и помогает скорректировать контуры тела.",
+    durations: {
+      moscow: [60, 90, 120],
+      saratov: [60, 75, 90, 120]
+    }
   },
   {
     title: "Миофасциальный массаж",
     category: "Коррекция фигуры",
-    text: "Глубокая работа с мышцами и фасциями для снятия зажимов и улучшения подвижности тела."
+    text: "Глубокая работа с мышцами и фасциями для снятия зажимов и улучшения подвижности тела.",
+    durations: {
+      moscow: [60, 90],
+      saratov: [45, 60, 75, 90]
+    }
   },
   {
     title: "Лимфодренажный массаж",
     category: "Коррекция фигуры",
-    text: "Активизирует лимфоток, уменьшает отёки и способствует естественному очищению организма."
+    text: "Активизирует лимфоток, уменьшает отёки и способствует естественному очищению организма.",
+    durations: {
+      moscow: [60, 90],
+      saratov: [45, 60, 75, 90]
+    }
   },
   {
     title: "Глубокотканный массаж",
-    text: "Интенсивная проработка глубоких слоёв мышц для снятия напряжения и восстановления тканей."
+    text: "Интенсивная проработка глубоких слоёв мышц для снятия напряжения и восстановления тканей.",
+    durations: {
+      moscow: [60, 90, 120],
+      saratov: [60, 75, 90, 120]
+    }
   },
   {
     title: "Спортивный массаж",
-    text: "Помогает мышцам быстрее восстановиться после нагрузок или настроиться на активную тренировку."
+    text: "Помогает мышцам быстрее восстановиться после нагрузок или настроиться на активную тренировку.",
+    durations: {
+      moscow: [60, 90, 120],
+      saratov: [45, 60, 75, 90, 120]
+    }
   },
   {
     title: "Антистресс массаж",
-    text: "Мягкие техники, снимающие стресс, тревожность и усталость, восстанавливая внутренний баланс."
+    text: "Мягкие техники, снимающие стресс, тревожность и усталость, восстанавливая внутренний баланс.",
+    durations: {
+      moscow: [60, 90, 120],
+      saratov: [45, 60, 75, 90, 120]
+    }
   },
   {
     title: "Массаж лица",
-    text: "Улучшает тонус кожи, стимулирует кровообращение, профилактика или устранение мелких мимических морщин."
+    text: "Улучшает тонус кожи, стимулирует кровообращение, профилактика или устранение мелких мимических морщин.",
+    durations: {
+      moscow: [45, 60],
+      saratov: [30, 45, 60]
+    }
   }
 ];
 
@@ -78,6 +155,9 @@ const certImages = Array.from({ length: 18 }, (_, i) => ({
   alt: `Диплом или сертификат ${i + 1}`
 }));
 
+const storageKeyCity = "tuatara_selected_city";
+let currentCity = localStorage.getItem(storageKeyCity) || "";
+
 function escapeHtml(str) {
   return String(str)
     .replaceAll("&", "&amp;")
@@ -87,75 +167,106 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
+function formatDuration(minutes) {
+  const map = {
+    30: "30 мин",
+    45: "45 мин",
+    60: "60 мин",
+    75: "1 ч 15 мин",
+    90: "1 ч 30 мин",
+    120: "2 ч"
+  };
+  return map[minutes] || `${minutes} мин`;
+}
+
+function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
+  const city = cityConfigs[currentCity || "moscow"];
+  const telegramText = gift
+    ? `Здравствуйте! Хочу оформить подарочный сертификат в городе ${city.label}.`
+    : `Здравствуйте! Хочу записаться на услугу: ${serviceTitle}. Город: ${city.label}.`;
+
+  const whatsappText = telegramText;
+  const maxText = telegramText;
+
+  const telegramUrl = `${baseLinks.telegram}?text=${encodeURIComponent(telegramText)}`;
+  const whatsappUrl = `${baseLinks.whatsapp}?text=${encodeURIComponent(whatsappText)}`;
+  const maxUrl = `${baseLinks.max}?text=${encodeURIComponent(maxText)}`;
+
+  return `
+    <a class="action-btn primary" href="${city.dikidi}">Онлайн запись</a>
+    <a class="action-btn" href="${telegramUrl}" target="_blank" rel="noopener">Телеграм</a>
+    <a class="action-btn" href="${whatsappUrl}" target="_blank" rel="noopener">Вотсап</a>
+    <a class="action-btn" href="${maxUrl}" target="_blank" rel="noopener">Макс</a>
+  `;
+}
+
 function renderServices() {
   const grid = document.getElementById("servicesGrid");
   if (!grid) return;
 
+  const city = cityConfigs[currentCity || "moscow"];
+
   grid.innerHTML = services.map((service, index) => {
-    const telegramUrl =
-      `${telegramBookingLink}?text=` +
-      encodeURIComponent(`Здравствуйте! Хочу записаться на услугу: ${service.title}`);
-
-    const whatsappUrl =
-      `${whatsappLink}?text=` +
-      encodeURIComponent(`Здравствуйте! Хочу записаться на услугу: ${service.title}`);
-
-    const hiddenClass = index >= 3 ? "hidden-service" : "";
-    const delayClass = index % 2 === 0 ? "" : "reveal-delay-1";
-    const serviceImagePath = `./images/service/service-${index + 1}.jpg`;
+    const durations = service.durations[currentCity || "moscow"] || [];
+    const priceRows = durations.map((minutes) => {
+      const price = city.prices[minutes] || "";
+      return `
+        <div class="service-price-row">
+          <span>${formatDuration(minutes)}</span>
+          <strong>${price}</strong>
+        </div>
+      `;
+    }).join("");
 
     return `
-      <article class="service-card reveal ${delayClass} ${hiddenClass}">
+      <article class="service-card reveal ${index % 2 ? "reveal-delay-1" : ""}">
         <img
           class="service-photo"
-          src="${serviceImagePath}"
+          src="./images/service/service-${index + 1}.jpg"
           alt="${service.title}"
           loading="lazy"
           onerror="this.onerror=null; this.src='./images/hero.jpg';"
         />
 
         ${service.category ? `<div class="service-category">${service.category}</div>` : ""}
-
         <h3>${service.title}</h3>
         <p>${service.text}</p>
 
-        <div class="service-actions">
-          <a class="btn btn-primary" href="${telegramUrl}" target="_blank" rel="noopener">
-            Запись
-          </a>
-          <a class="btn btn-secondary" href="${whatsappUrl}" target="_blank" rel="noopener">
-            WhatsApp
-          </a>
+        <div class="service-price-list">
+          ${priceRows}
+        </div>
+
+        <div class="card-actions">
+          ${buildActionButtons({ serviceTitle: service.title })}
         </div>
       </article>
     `;
   }).join("");
 
   initRevealObserver();
-  initShowMore();
 }
 
-function initShowMore() {
-  const btn = document.getElementById("showMoreBtn");
-  if (!btn) return;
+function updateCityDependentContent() {
+  const city = cityConfigs[currentCity || "moscow"];
+  document.getElementById("currentCityLabel").textContent = city.label;
+  document.getElementById("heroCityBadge").textContent = city.badge;
+  document.getElementById("addressText").textContent = city.address;
+  document.getElementById("mapCityTitle").textContent = city.label;
+  document.getElementById("mapAddressText").textContent = city.shortAddress;
+  document.getElementById("yandexMapLink").href = city.yandexMap;
+  document.getElementById("mapOpenBtn").href = city.yandexMap;
+  document.getElementById("footerCityText").textContent = city.label;
+  document.getElementById("giftActions").innerHTML = buildActionButtons({ gift: true });
+  document.getElementById("contactActions").innerHTML = buildActionButtons({});
 
-  const hiddenCards = [...document.querySelectorAll(".hidden-service")];
+  document.getElementById("topTelegramLink").href =
+    `${baseLinks.telegram}?text=${encodeURIComponent(`Здравствуйте! Хочу записаться. Город: ${city.label}.`)}`;
+  document.getElementById("topWhatsappLink").href =
+    `${baseLinks.whatsapp}?text=${encodeURIComponent(`Здравствуйте! Хочу записаться. Город: ${city.label}.`)}`;
+  document.getElementById("topMaxLink").href =
+    `${baseLinks.max}?text=${encodeURIComponent(`Здравствуйте! Хочу записаться. Город: ${city.label}.`)}`;
 
-  if (!hiddenCards.length) {
-    btn.style.display = "none";
-    return;
-  }
-
-  btn.addEventListener("click", () => {
-    hiddenCards.forEach((card, index) => {
-      setTimeout(() => {
-        card.classList.add("show");
-        card.classList.add("active");
-      }, index * 70);
-    });
-
-    btn.style.display = "none";
-  });
+  document.getElementById("stickyActions").innerHTML = buildActionButtons({});
 }
 
 function renderSlider(trackId, items) {
@@ -174,11 +285,7 @@ function initSliderButtons() {
     button.addEventListener("click", () => {
       const track = document.getElementById(button.dataset.sliderPrev);
       if (!track) return;
-
-      track.scrollBy({
-        left: -track.clientWidth * 0.85,
-        behavior: "smooth"
-      });
+      track.scrollBy({ left: -track.clientWidth * 0.85, behavior: "smooth" });
     });
   });
 
@@ -186,11 +293,7 @@ function initSliderButtons() {
     button.addEventListener("click", () => {
       const track = document.getElementById(button.dataset.sliderNext);
       if (!track) return;
-
-      track.scrollBy({
-        left: track.clientWidth * 0.85,
-        behavior: "smooth"
-      });
+      track.scrollBy({ left: track.clientWidth * 0.85, behavior: "smooth" });
     });
   });
 }
@@ -261,15 +364,9 @@ function initRevealObserver() {
         observer.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.12
-  });
+  }, { threshold: 0.12 });
 
-  elements.forEach((el) => {
-    if (!el.classList.contains("hidden-service")) {
-      observer.observe(el);
-    }
-  });
+  elements.forEach((el) => observer.observe(el));
 }
 
 const LOCAL_REVIEW_STORAGE_KEY = "tautara_local_reviews";
@@ -330,18 +427,13 @@ function initLocalReviewForm() {
     submitBtn.disabled = true;
     submitBtn.textContent = "Отправка...";
 
-    saveLocalReview({
-      name,
-      message,
-      createdAt: Date.now()
-    });
+    saveLocalReview({ name, message, createdAt: Date.now() });
 
     form.reset();
     renderLocalReviews();
 
     submitBtn.disabled = false;
     submitBtn.textContent = "Отправить отзыв";
-
     alert("Отзыв добавлен. Сейчас он сохраняется локально в браузере.");
   });
 }
@@ -441,9 +533,37 @@ function initReviews() {
   }
 }
 
-function init() {
+function selectCity(cityKey) {
+  currentCity = cityKey;
+  localStorage.setItem(storageKeyCity, cityKey);
+  updateCityDependentContent();
   renderServices();
+  document.getElementById("cityOverlay").classList.add("hidden");
+}
 
+function initCitySelection() {
+  const overlay = document.getElementById("cityOverlay");
+
+  document.querySelectorAll(".city-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      selectCity(btn.dataset.city);
+    });
+  });
+
+  document.getElementById("changeCityBtn").addEventListener("click", () => {
+    overlay.classList.remove("hidden");
+  });
+
+  if (currentCity === "moscow" || currentCity === "saratov") {
+    updateCityDependentContent();
+    renderServices();
+    overlay.classList.add("hidden");
+  } else {
+    overlay.classList.remove("hidden");
+  }
+}
+
+function init() {
   renderSlider("reviewsSlider", reviewImages);
   renderSlider("resultsSlider", resultImages);
   renderSlider("cabinetSlider", cabinetImages);
@@ -454,6 +574,7 @@ function init() {
   initBurgerMenu();
   initRevealObserver();
   initReviews();
+  initCitySelection();
 }
 
 document.addEventListener("DOMContentLoaded", init);
