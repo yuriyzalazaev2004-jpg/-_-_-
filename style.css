@@ -273,19 +273,6 @@ textarea {
   width: 100%;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-  font-size: 13px;
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
 .sale {
   display: inline-flex;
   align-items: center;
@@ -321,6 +308,26 @@ h3 {
   line-height: 1.02;
   letter-spacing: -0.04em;
   margin-bottom: 12px;
+}
+
+.hero-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+  flex-wrap: wrap;
+}
+
+.hero-city-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .lead {
@@ -470,19 +477,6 @@ h3 {
   background: #ddd;
 }
 
-.service-category {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-  font-size: 13px;
-  font-weight: 700;
-  width: fit-content;
-}
-
 .service-price-list {
   display: grid;
   gap: 8px;
@@ -618,48 +612,20 @@ h3 {
   gap: 14px;
 }
 
-.review-form {
-  display: grid;
-  gap: 12px;
-}
-
-.input,
-.textarea {
+.tally-review-wrap {
   width: 100%;
-  border: 1px solid var(--line);
-  background: rgba(255,255,255,0.96);
-  border-radius: 16px;
-  padding: 14px 16px;
-  outline: none;
-}
-
-.textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-.review-status {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.user-reviews {
-  display: grid;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.user-review {
-  background: linear-gradient(180deg, #fcfbf8 0%, #f7f4ef 100%);
-  border: 1px solid var(--line);
+  overflow: hidden;
   border-radius: 18px;
-  padding: 16px;
-  box-shadow: var(--shadow-soft);
+  border: 1px solid var(--line);
+  background: #fff;
 }
 
-.user-review strong {
+.tally-review-wrap iframe {
   display: block;
-  margin-bottom: 6px;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  background: #fff;
 }
 
 .results-text {
@@ -736,6 +702,29 @@ h3 {
 .map-placeholder p {
   margin-bottom: 18px;
   color: var(--muted);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent) 0%, #7f9170 100%);
+  color: #ffffff;
 }
 
 .lightbox {
