@@ -45,8 +45,8 @@ const services = [
     title: "Общий массаж всего тела",
     text: "Расслабляет мышцы, снимает напряжение, улучшает кровообращение и общее самочувствие.",
     durations: {
-      moscow: [45, 60, 90, 120],
-      saratov: [45, 60, 75, 90, 120]
+      moscow: [60, 90, 120],
+      saratov: [60, 75, 90, 120]
     }
   },
   {
@@ -54,7 +54,7 @@ const services = [
     text: "Комплексный уход для полного расслабления тела и улучшения тонуса кожи лица.",
     durations: {
       moscow: [90, 120],
-      saratov: [75, 90, 120]
+      saratov: [90, 120]
     }
   },
   {
@@ -78,7 +78,7 @@ const services = [
     text: "Глубокая работа с мышцами и фасциями для снятия зажимов и улучшения подвижности тела.",
     durations: {
       moscow: [60, 90],
-      saratov: [60, 75, 90]
+      saratov: [45, 60, 75, 90]
     }
   },
   {
@@ -102,7 +102,7 @@ const services = [
     text: "Помогает мышцам быстрее восстановиться после нагрузок или настроиться на активную тренировку.",
     durations: {
       moscow: [60, 90, 120],
-      saratov: [60, 75, 90, 120]
+      saratov: [45, 60, 75, 90, 120]
     }
   },
   {
@@ -110,7 +110,7 @@ const services = [
     text: "Мягкие техники, снимающие стресс, тревожность и усталость, восстанавливая внутренний баланс.",
     durations: {
       moscow: [60, 90, 120],
-      saratov: [60, 75, 90, 120]
+      saratov: [45, 60, 75, 90, 120]
     }
   },
   {
@@ -133,21 +133,10 @@ const resultImages = Array.from({ length: 21 }, (_, i) => ({
   alt: `Результат массажа ${i + 1}`
 }));
 
-function getCabinetImages() {
-  if ((currentCity || "moscow") === "saratov") {
-    return [
-      {
-        src: "images/cabinet_2/cabinet.jpg",
-        alt: "Кабинет в Саратове"
-      }
-    ];
-  }
-
-  return Array.from({ length: 4 }, (_, i) => ({
-    src: `images/cabinet/cabinet-${i + 1}.jpg`,
-    alt: `Кабинет ${i + 1}`
-  }));
-}
+const cabinetImages = Array.from({ length: 4 }, (_, i) => ({
+  src: `images/cabinet/cabinet-${i + 1}.jpg`,
+  alt: `Кабинет ${i + 1}`
+}));
 
 const certImages = Array.from({ length: 18 }, (_, i) => ({
   src: `images/certs/cert-${i + 1}.jpg`,
@@ -413,7 +402,6 @@ function selectCity(cityKey) {
   localStorage.setItem(storageKeyCity, cityKey);
   updateCityDependentContent();
   renderServices();
-  renderSlider("cabinetSlider", getCabinetImages());
 
   const overlay = document.getElementById("cityOverlay");
   if (overlay) overlay.classList.add("hidden");
@@ -438,7 +426,6 @@ function initCitySelection() {
   if (currentCity === "moscow" || currentCity === "saratov") {
     updateCityDependentContent();
     renderServices();
-    renderSlider("cabinetSlider", getCabinetImages());
     if (overlay) overlay.classList.add("hidden");
   } else if (overlay) {
     overlay.classList.remove("hidden");
@@ -457,7 +444,7 @@ function initTallyEmbeds() {
 function init() {
   renderSlider("reviewsSlider", reviewImages);
   renderSlider("resultsSlider", resultImages);
-  renderSlider("cabinetSlider", getCabinetImages());
+  renderSlider("cabinetSlider", cabinetImages);
   renderSlider("certsSlider", certImages);
 
   initSliderButtons();
