@@ -1093,3 +1093,28 @@ h3 {
     line-height: 1.6;
   }
 }
+
+
+/* MOBILE font like gift certificate */
+@media (max-width: 640px) {
+
+  #subscription .text-card h3,
+  #results .text-card h3 {
+    font-size: 22px;
+    line-height: 1.25;
+    font-weight: 700;
+  }
+
+  #subscription .text-card p,
+  #results .text-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+
+  .result-question {
+    font-size: 17px;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+}
