@@ -133,10 +133,21 @@ const resultImages = Array.from({ length: 21 }, (_, i) => ({
   alt: `Результат массажа ${i + 1}`
 }));
 
-const cabinetImages = Array.from({ length: 4 }, (_, i) => ({
-  src: `images/cabinet/cabinet-${i + 1}.jpg`,
-  alt: `Кабинет ${i + 1}`
-}));
+function getCabinetImages() {
+  if ((currentCity || "moscow") === "saratov") {
+    return [
+      {
+        src: "images/cabinet_2/cabinet.jpg",
+        alt: "Кабинет в Саратове"
+      }
+    ];
+  }
+
+  return Array.from({ length: 4 }, (_, i) => ({
+    src: `images/cabinet/cabinet-${i + 1}.jpg`,
+    alt: `Кабинет ${i + 1}`
+  }));
+}
 
 const certImages = Array.from({ length: 18 }, (_, i) => ({
   src: `images/certs/cert-${i + 1}.jpg`,
@@ -402,6 +413,7 @@ function selectCity(cityKey) {
   localStorage.setItem(storageKeyCity, cityKey);
   updateCityDependentContent();
   renderServices();
+  renderSlider("cabinetSlider", getCabinetImages());
 
   const overlay = document.getElementById("cityOverlay");
   if (overlay) overlay.classList.add("hidden");
@@ -426,6 +438,7 @@ function initCitySelection() {
   if (currentCity === "moscow" || currentCity === "saratov") {
     updateCityDependentContent();
     renderServices();
+  renderSlider("cabinetSlider", getCabinetImages());
     if (overlay) overlay.classList.add("hidden");
   } else if (overlay) {
     overlay.classList.remove("hidden");
@@ -444,7 +457,7 @@ function initTallyEmbeds() {
 function init() {
   renderSlider("reviewsSlider", reviewImages);
   renderSlider("resultsSlider", resultImages);
-  renderSlider("cabinetSlider", cabinetImages);
+  renderSlider("cabinetSlider", getCabinetImages());
   renderSlider("certsSlider", certImages);
 
   initSliderButtons();
