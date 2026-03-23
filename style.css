@@ -795,6 +795,11 @@ h3 {
 .sticky-actions a.primary {
   background: linear-gradient(135deg, var(--accent) 0%, #7f9170 100%);
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .footer {
@@ -846,19 +851,7 @@ h3 {
 
 @media (max-width: 920px) {
   .header-city-switch {
-    display: block;
-    margin-left: 0;
-  }
-
-  .header-inner {
-    gap: 10px;
-  }
-
-  .city-switch-btn {
-    min-height: 38px;
-    padding: 0 10px;
-    font-size: 12px;
-    white-space: nowrap;
+    display: none;
   }
 
   .burger {
@@ -1001,4 +994,27 @@ h3 {
   .city-buttons {
     grid-template-columns: 1fr;
   }
+  #reviews {
+    margin-top: 40px;
+  }
+
+  #reviews::before {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 999px;
+    margin: 0 auto 20px;
+  }
+}
+
+
+.city-switch-btn {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.city-switch-btn:hover {
+  background: #f3eee6;
 }
