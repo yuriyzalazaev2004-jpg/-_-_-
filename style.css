@@ -1118,3 +1118,19 @@ h3 {
     font-weight: 700;
   }
 }
+
+
+/* 🔥 АКЦИЯ — сделать как сертификат */
+@media (max-width: 640px) {
+
+  #subscription .text-card p {
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  #subscription .text-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+  }
+}
