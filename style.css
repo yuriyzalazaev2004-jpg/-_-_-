@@ -851,29 +851,7 @@ h3 {
 
 @media (max-width: 920px) {
   .header-city-switch {
-    display: block;
-    order: 3;
-    width: 100%;
-    margin-top: 8px;
-    margin-left: 0;
-  }
-
-  .header-inner {
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .city-switch-btn {
-    width: 100%;
-    min-height: 44px;
-    padding: 0 14px;
-    border-radius: 999px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
+    display: none;
   }
 
   .burger {
@@ -1042,137 +1020,92 @@ h3 {
 }
 
 
-/* Акция и Результаты — шрифт как в подарочном сертификате */
-#subscription .text-card,
-#results .text-card,
-#results .results-text,
-#gift .gift-text-card {
-  font-family: Arial, Helvetica, sans-serif;
+/* --- Tally form --- */
+.tally-review-wrap {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: #fff;
 }
 
-#subscription .text-card h3,
-#results .text-card h3,
-#results .result-question,
-#gift .gift-text-card h3 {
-  font-size: 30px;
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: 0;
+.tally-review-wrap iframe {
+  display: block;
+  width: 100%;
+  min-height: 420px;
+  border: 0;
+  background: #fff;
 }
 
-#subscription .text-card p,
-#results .text-card p,
-#results .results-text p,
-#gift .gift-text-card p,
-#gift .gift-text-card li {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--text);
+/* --- City switch button --- */
+.city-switch-btn {
+  cursor: pointer;
+  font-weight: 600;
 }
 
-#results .result-question {
-  color: var(--accent-dark);
-  margin-top: 14px;
+.city-switch-btn:hover {
+  background: #f3eee6;
+}
+
+/* --- Mobile: show the same city switch button as desktop --- */
+@media (max-width: 920px) {
+  .header-city-switch {
+    display: block !important;
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .city-switch-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 999px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+}
+
+/* --- Sticky mobile actions: center main button text --- */
+.sticky-actions a.primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  white-space: nowrap;
 }
 
 @media (max-width: 640px) {
-  #subscription .text-card h3,
-  #results .text-card h3,
-  #results .result-question,
-  #gift .gift-text-card h3 {
-    font-size: 24px;
-    line-height: 1.2;
+  .sticky-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 
-  #subscription .text-card p,
-  #results .text-card p,
-  #results .results-text p,
-  #gift .gift-text-card p,
-  #gift .gift-text-card li {
-    font-size: 15px;
-    line-height: 1.6;
-  }
-}
-
-
-/* MOBILE font like gift certificate */
-@media (max-width: 640px) {
-
-  #subscription .text-card h3,
-  #results .text-card h3 {
-    font-size: 22px;
-    line-height: 1.25;
-    font-weight: 700;
-  }
-
-  #subscription .text-card p,
-  #results .text-card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: var(--text);
-  }
-
-  .result-question {
-    font-size: 17px;
-    line-height: 1.4;
-    font-weight: 700;
+  .sticky-actions a.primary {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 70%;
+    max-width: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
   }
 }
 
-
-/* 🔥 АКЦИЯ — сделать как сертификат */
-@media (max-width: 640px) {
-
-  #subscription .text-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 400;
-  }
-
-  #subscription .text-card h3 {
-    font-size: 22px;
-    font-weight: 700;
-  }
-}
-
-
-/* ЖЁСТКОЕ ИСПРАВЛЕНИЕ ШРИФТА В БЛОКЕ АКЦИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
-@media (max-width: 640px) {
-  #subscription .text-card h3,
-  section#subscription .text-card h3 {
-    font-size: 22px !important;
-    line-height: 1.3 !important;
-    font-weight: 700 !important;
-    letter-spacing: 0 !important;
-  }
-
-  #subscription .text-card p,
-  section#subscription .text-card p {
-    font-size: 14px !important;
-    line-height: 1.6 !important;
-    font-weight: 400 !important;
-    color: var(--text) !important;
-  }
-}
-
-
-/* 🔥 АКЦИЯ — ШРИФТ КАК В СЕРТИФИКАТЕ (ПК) */
-#subscription .text-card h3 {
-  font-size: 26px !important;
-  line-height: 1.3 !important;
-  font-weight: 700 !important;
-}
-
-#subscription .text-card p {
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  font-weight: 400 !important;
-}
-
-
-/* АКЦИЯ = СЕРТИФИКАТ (ИДЕАЛЬНОЕ СОВПАДЕНИЕ) */
-
-#subscription .text-card p,
+/* --- Make offer text same feel as gift certificate --- */
+#offer .text-card p,
 #gift .gift-text-card p {
   font-size: 16px !important;
   line-height: 1.6 !important;
@@ -1180,11 +1113,42 @@ h3 {
   color: var(--text) !important;
 }
 
-/* мобильная версия */
 @media (max-width: 640px) {
-  #subscription .text-card p,
+  #offer .text-card p,
   #gift .gift-text-card p {
     font-size: 14px !important;
     line-height: 1.6 !important;
   }
+
+  #offer .text-card h2,
+  #gift .gift-text-card h2 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+
+  #results .text-card p {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  .result-question {
+    font-size: 17px !important;
+    line-height: 1.4 !important;
+    font-weight: 700 !important;
+  }
+}
+
+/* --- Reviews marker after diplomas --- */
+#reviews {
+  margin-top: 40px;
+}
+
+#reviews::before {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 999px;
+  margin: 0 auto 20px;
 }
