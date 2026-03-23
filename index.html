@@ -1,34 +1,371 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Туатара массаж</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Массажный кабинет Туатара</title>
+  <meta
+    name="description"
+    content="Массажный кабинет Туатара. Москва и Саратов. Виды массажа, онлайн-запись, подарочные сертификаты, отзывы, результаты."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="city-overlay" id="cityOverlay">
+    <div class="city-modal">
+      <img src="images/logo.png" alt="Логотип Туатара" class="city-logo" />
+      <h1 class="city-title">Массажный кабинет Туатара</h1>
+      <p class="city-subtitle">В каком городе хотите записаться?</p>
 
-<header class="header">
-  <div class="header-inner">
-    <div class="brand">
-      <div class="brand-title">Туатара</div>
-    </div>
-
-    <button class="burger">☰</button>
-
-    <div class="header-city-switch">
-      <button id="changeCityBtn" class="city-switch-btn">
-        📍 Выбор города: <span id="currentCityLabel">Москва</span>
-      </button>
+      <div class="city-buttons">
+        <button class="city-btn" data-city="moscow" type="button">Москва</button>
+        <button class="city-btn" data-city="saratov" type="button">Саратов</button>
+      </div>
     </div>
   </div>
-</header>
 
-<div id="cityOverlay" class="city-overlay hidden">
-  <button class="city-btn" data-city="moscow">Москва</button>
-  <button class="city-btn" data-city="saratov">Саратов</button>
-</div>
+  <div class="top-contacts">
+    <div class="container top-contacts-inner">
+      <div class="top-contacts-left">
+        <a href="tel:+79042406833">+7 (904) 240-68-33</a>
+        <a href="mailto:pevzova77@gmail.com">pevzova77@gmail.com</a>
+      </div>
 
-<script src="script.js"></script>
+      <div class="top-contacts-right">
+        <a id="topTelegramLink" href="https://t.me/elena_tuatara_massag" target="_blank" rel="noopener">Телеграм</a>
+        <a id="topWhatsappLink" href="https://wa.me/79042406833" target="_blank" rel="noopener">Вотсап</a>
+        <a id="topMaxLink" href="https://max.ru/u/f9LHodD0cOLbVHM9ql3WQbXqbwl_xBhF61Ipdc6W-UP6LQ_kdhzG-kq2bZY" target="_blank" rel="noopener">Макс</a>
+        <a id="topVkLink" href="https://vk.com/massag_elena_tuatara" target="_blank" rel="noopener">VK</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <img src="images/logo.png" alt="Логотип Туатара" class="brand-logo" />
+        <div class="brand-text">
+          <span class="brand-title">Туатара</span>
+        </div>
+      </a>
+
+      <div class="header-city-switch">
+        <button class="city-switch-btn" id="changeCityBtn" type="button">
+          📍 Выбор города: <span id="currentCityLabel">Москва</span>
+        </button>
+      </div>
+
+      <button class="burger" id="burgerBtn" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="mainNav">
+        <a href="#services">Виды массажа</a>
+        <a href="#master">О мастере</a>
+        <a href="#offer">Акция</a>
+        <a href="#gift">Сертификат</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#results">Результаты</a>
+        <a href="#cabinet">Кабинет</a>
+        <a href="#certs">Дипломы</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="container hero-grid">
+        <div class="hero-content-card reveal">
+          <div class="hero-topline">
+            <h2 class="hero-main-title">Массажный кабинет Туатара</h2>
+            <span class="hero-city-badge" id="heroCityBadge">Москва</span>
+          </div>
+
+          <p class="lead">
+            Профессиональный массаж для восстановления, расслабления и улучшения самочувствия.
+          </p>
+
+          <div class="hero-points">
+            <div class="point">
+              <strong>Профессиональный подход</strong>
+            </div>
+
+            <div class="point">
+              <strong>Конфиденциальность и этика</strong>
+            </div>
+
+            <div class="point">
+              <strong>Комфортный кабинет</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-photo-card reveal reveal-delay-1">
+          <img src="images/hero.jpg" alt="Массажный кабинет Туатара" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Виды массажа</h2>
+          </div>
+        </div>
+
+        <div class="services-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="master">
+      <div class="container master-grid">
+        <div class="master-photo-card reveal">
+          <img src="images/master.jpg" alt="Елена Певцова" />
+        </div>
+
+        <div class="master-text-card reveal reveal-delay-1">
+          <h2>Елена Певцова</h2>
+
+          <p class="master-quote">
+            Работаю с акцентом на выраженный эффект и улучшение самочувствия.
+          </p>
+
+          <div class="master-features">
+            <div class="point">
+              <strong>Мастер массажа</strong>
+              <span>С мед. образованием и опытом более 10 лет.</span>
+            </div>
+
+            <div class="point">
+              <strong>Индивидуальный подход</strong>
+              <span>Техника и длительность сеанса подбираются под Ваш запрос.</span>
+            </div>
+
+            <div class="point">
+              <strong>Выраженный эффект</strong>
+              <span>Работа направлена на заметный результат и улучшение состояния тела.</span>
+            </div>
+
+            <div class="point">
+              <strong>Конфиденциальность</strong>
+              <span>Сохраняется конфиденциальность и этика мед.работника.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="offer">
+      <div class="container">
+        <div class="info-grid">
+          <div class="text-card reveal">
+            <h2>Акция</h2>
+
+            <p>
+              <span class="sale">АКЦИЯ</span>
+              При покупке абонемента стоимость одного сеанса становится выгоднее,
+              чем при разовом посещении.
+            </p>
+
+            <p>
+              Чем регулярнее процедуры, тем заметнее результат. Курс массажа помогает
+              закрепить результат и получить более выраженный эффект от процедур.
+            </p>
+          </div>
+
+          <div class="vertical-card reveal reveal-delay-1">
+            <img src="images/subscription.jpg" alt="Абонемент на массаж" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gift">
+      <div class="container">
+        <div class="gift-layout">
+          <div class="gift-image-card reveal">
+            <img src="images/gift-certificate.jpg" alt="Подарочный сертификат" />
+          </div>
+
+          <div class="gift-text-card reveal reveal-delay-1">
+            <h2>Подарочный сертификат</h2>
+
+            <p>
+              Подарочный сертификат можно оформить на любую сумму офлайн или онлайн.
+            </p>
+
+            <p>
+              Срок действия сертификата 3 месяца.
+            </p>
+
+            <div class="card-actions gift-actions" id="giftActions"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+    <section class="section" id="results">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Результаты процедур</h2>
+          </div>
+        </div>
+
+        <div class="slider-block reveal">
+          <button class="slider-btn prev" data-slider-prev="resultsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="resultsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="resultsSlider" aria-label="Вперёд">›</button>
+        </div>
+
+        <div class="text-card results-text reveal reveal-delay-1">
+          <p>
+            Результаты бывают видимые, которые можно посмотреть здесь ⬆️, и невидимые —
+            это улучшение общего самочувствия, улучшение памяти, снятие головных болей,
+            улучшение настроения, бодрость днём и крепкий сон ночью и многое другое.
+          </p>
+
+          <p class="result-question">А что ожидаете Вы от массажа?</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cabinet">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Массажист ждёт Вас в чистом, тёплом, светлом кабинете</h2>
+          </div>
+        </div>
+
+        <div class="slider-block reveal">
+          <button class="slider-btn prev" data-slider-prev="cabinetSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="cabinetSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="cabinetSlider" aria-label="Вперёд">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="certs">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Дипломы и сертификаты</h2>
+          </div>
+        </div>
+
+        <div class="slider-block reveal">
+          <button class="slider-btn prev" data-slider-prev="certsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="certsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="certsSlider" aria-label="Вперёд">›</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contacts">
+      <div class="container contact-layout">
+        <div class="contact-card reveal">
+          <h2>Контакты и запись</h2>
+
+          <div class="contact-list">
+            <a href="tel:+79042406833" class="contact-item">+7 (904) 240-68-33</a>
+            <a href="mailto:pevzova77@gmail.com" class="contact-item">pevzova77@gmail.com</a>
+            <div class="contact-item" id="addressText">г. Москва, ул. Беговая, д. 6</div>
+          </div>
+
+          <div class="social-links" id="contactActions"></div>
+
+          <a class="yandex-link" id="yandexMapLink" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Беговая%2C%20д.%206" target="_blank" rel="noopener">
+            Открыть на Яндекс Картах
+          </a>
+        </div>
+
+        <div class="map-card reveal reveal-delay-1">
+          <div class="map-placeholder">
+            <h3 id="mapCityTitle">Москва</h3>
+            <p id="mapAddressText">ул. Беговая, д. 6</p>
+            <a class="btn btn-primary" id="mapOpenBtn" href="https://yandex.ru/maps/?text=Москва%2C%20ул.%20Беговая%2C%20д.%206" target="_blank" rel="noopener">
+              Перейти к точке на карте
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Закрыть">×</button>
+    <img id="lightboxImage" src="" alt="Увеличенное изображение" />
+  </div>
+
+  <div class="sticky-actions" id="stickyActions"></div>
+
+  <section class="section" id="reviews">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Отзывы клиентов</h2>
+          </div>
+        </div>
+
+        <div class="slider-block reveal">
+          <button class="slider-btn prev" data-slider-prev="reviewsSlider" aria-label="Назад">‹</button>
+
+          <div class="slider-window">
+            <div class="slider-track" id="reviewsSlider"></div>
+          </div>
+
+          <button class="slider-btn next" data-slider-next="reviewsSlider" aria-label="Вперёд">›</button>
+        </div>
+
+        <div class="review-form-card reveal reveal-delay-1">
+          <h3>Оставить отзыв</h3>
+          <p class="muted">
+            Буду благодарна за вашу оценку и отзыв о посещении массажного кабинета.
+          </p>
+
+          <div class="tally-review-wrap">
+            <iframe
+              src="https://tally.so/r/xXZezk"
+              loading="lazy"
+              width="100%"
+              height="420"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="Форма отзыва">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<footer class="footer">
+    <div class="container footer-inner">
+      <div>© 2026 Туатара — Елена Певцова</div>
+      <div id="footerCityText">Москва</div>
+    </div>
+  </footer>
+
+  <script type="text/javascript" src="https://dikidi.net/assets/js/widget_record/widget2.min.js?v=1773811740"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
