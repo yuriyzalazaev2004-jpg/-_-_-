@@ -1040,3 +1040,56 @@ h3 {
 .city-switch-btn:hover {
   background: #f3eee6;
 }
+
+
+/* Акция и Результаты — шрифт как в подарочном сертификате */
+#subscription .text-card,
+#results .text-card,
+#results .results-text,
+#gift .gift-text-card {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#subscription .text-card h3,
+#results .text-card h3,
+#results .result-question,
+#gift .gift-text-card h3 {
+  font-size: 30px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+#subscription .text-card p,
+#results .text-card p,
+#results .results-text p,
+#gift .gift-text-card p,
+#gift .gift-text-card li {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+#results .result-question {
+  color: var(--accent-dark);
+  margin-top: 14px;
+}
+
+@media (max-width: 640px) {
+  #subscription .text-card h3,
+  #results .text-card h3,
+  #results .result-question,
+  #gift .gift-text-card h3 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  #subscription .text-card p,
+  #results .text-card p,
+  #results .results-text p,
+  #gift .gift-text-card p,
+  #gift .gift-text-card li {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
