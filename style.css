@@ -1134,3 +1134,23 @@ h3 {
     font-weight: 700;
   }
 }
+
+
+/* ЖЁСТКОЕ ИСПРАВЛЕНИЕ ШРИФТА В БЛОКЕ АКЦИЯ ДЛЯ МОБИЛЬНОЙ ВЕРСИИ */
+@media (max-width: 640px) {
+  #subscription .text-card h3,
+  section#subscription .text-card h3 {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+  }
+
+  #subscription .text-card p,
+  section#subscription .text-card p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+    color: var(--text) !important;
+  }
+}
