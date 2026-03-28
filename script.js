@@ -155,7 +155,7 @@ const certImages = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 const storageKeyCity = "tuatara_selected_city";
-let currentCity = localStorage.getItem(storageKeyCity) || "";
+let currentCity = localStorage.getItem(storageKeyCity) || "moscow";
 
 function formatDuration(minutes) {
   const map = {
@@ -291,19 +291,102 @@ function updateCityDependentContent() {
   }
 }
 
-function renderSlider(trackId, items) {
+function renderSlider(trackId, items, limit = null) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  track.innerHTML = items
+  const safeItems = Array.isArray(items) ? items : [];
+  const visibleItems = limit ? safeItems.slice(0, limit) : safeItems;
+
+  track.innerHTML = visibleItems
     .map(
-      (item) => `
+      (item, index) => `
         <div class="slider-item">
-          <img src="${item.src}" alt="${item.alt}" data-lightbox="${item.src}" />
+          <img
+            src="${item.src}"
+            alt="${item.alt}"
+            data-lightbox="${item.src}"
+            loading="lazy"
+            decoding="async"
+            ${index < 2 ? 'fetchpriority="low"' : ''}
+          />
         </div>
       `
     )
     .join("");
+}
+
+
+
+function renderInitialSliders() {
+  renderSlider("reviewsSlider", reviewImages, 3);
+  renderSlider("resultsSlider", resultImages, 4);
+  renderSlider("cabinetSlider", getCabinetImages(), 2);
+  renderSlider("certsSlider", certImages, 4);
+}
+
+function initDeferredSliderLoading() {
+  const sliderMap = {
+    results: () => renderSlider("resultsSlider", resultImages),
+    cabinet: () => renderSlider("cabinetSlider", getCabinetImages()),
+    certs: () => renderSlider("certsSlider", certImages),
+    reviews: () => renderSlider("reviewsSlider", reviewImages)
+  };
+
+  Object.entries(sliderMap).forEach(([sectionId, renderFn]) => {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    if (!("IntersectionObserver" in window)) {
+      renderFn();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            renderFn();
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "250px 0px" }
+    );
+
+    observer.observe(section);
+  });
+}
+
+function initLazyIframeLoading() {
+  const iframes = document.querySelectorAll("iframe[data-src]");
+
+  iframes.forEach((iframe) => {
+    const loadIframe = () => {
+      if (!iframe.src) {
+        iframe.src = iframe.dataset.src;
+      }
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      loadIframe();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            loadIframe();
+            observer.disconnect();
+          }
+        });
+      },
+      { rootMargin: "300px 0px" }
+    );
+
+    observer.observe(iframe);
+  });
 }
 
 function initSliderButtons() {
@@ -413,11 +496,17 @@ function selectCity(cityKey) {
   localStorage.setItem(storageKeyCity, cityKey);
   updateCityDependentContent();
   renderServices();
-  renderSlider("cabinetSlider", getCabinetImages());
+  renderSlider("cabinetSlider", getCabinetImages(), 2);
+
+  const cabinetSection = document.getElementById("cabinet");
+  if (cabinetSection && cabinetSection.getBoundingClientRect().top < window.innerHeight + 300) {
+    renderSlider("cabinetSlider", getCabinetImages());
+  }
 
   const overlay = document.getElementById("cityOverlay");
   if (overlay) overlay.classList.add("hidden");
 }
+
 
 function initCitySelection() {
   const overlay = document.getElementById("cityOverlay");
@@ -435,38 +524,34 @@ function initCitySelection() {
     });
   }
 
-  if (currentCity === "moscow" || currentCity === "saratov") {
-    updateCityDependentContent();
-    renderServices();
-    renderSlider("cabinetSlider", getCabinetImages());
-    if (overlay) overlay.classList.add("hidden");
-  } else if (overlay) {
-    overlay.classList.remove("hidden");
+  if (currentCity !== "moscow" && currentCity !== "saratov") {
+    currentCity = "moscow";
+    localStorage.setItem(storageKeyCity, currentCity);
+  }
+
+  updateCityDependentContent();
+  renderServices();
+  renderSlider("cabinetSlider", getCabinetImages(), 2);
+
+  if (overlay) {
+    overlay.classList.add("hidden");
   }
 }
 
-function initTallyEmbeds() {
-  const iframes = document.querySelectorAll("iframe[data-tally-src]");
-  iframes.forEach((iframe) => {
-    if (!iframe.src) {
-      iframe.src = iframe.dataset.tallySrc;
-    }
-  });
-}
+
+
 
 function init() {
-  renderSlider("reviewsSlider", reviewImages);
-  renderSlider("resultsSlider", resultImages);
-  renderSlider("cabinetSlider", getCabinetImages());
-  renderSlider("certsSlider", certImages);
-
+  renderInitialSliders();
+  initDeferredSliderLoading();
   initSliderButtons();
   initLightbox();
   initBurgerMenu();
   initRevealObserver();
   initCitySelection();
-  initTallyEmbeds();
+  initLazyIframeLoading();
 }
+
 
 document.addEventListener("DOMContentLoaded", init);
 

@@ -9,8 +9,9 @@
     content="Массажный кабинет Туатара. Москва и Саратов. Виды массажа, онлайн-запись, подарочные сертификаты, отзывы, результаты."
   />
   <link rel="stylesheet" href="style.css" />
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=XT3gtTGbCKM-Zt_M39LaHbaK5_SfZj-2B-gABJUeHldpMU5laq3FRiSBYflw47CWPkiRwZfOSNfNnZvSLCJ9bQKB_w7tXcGdfj2l2-3apIkdNKtxoHVUmQa3AZe-IlmNLTCiPX7KIRr9GnyXwmZ8cDIKuS-8RoX_V1Agy8cVFK78bjsorKnWTSRlHV3TUGfTuIMbh173hhDf24GeHn3aHjLbSqgigzJmWg3Tg3pRTPVlCj_BKBoNqtQNXIdTF4AVB6s2AHY8HfFjoK-U8r9CSA" charset="UTF-8"></script></head>
+</head>
 <body>
+  <noscript><div style="padding:12px;background:#fff3cd;color:#664d03;text-align:center;font-family:Arial,sans-serif">Для корректной работы сайта нужен JavaScript. Если выбор города не появился, обновите страницу или свяжитесь по телефону.</div></noscript>
   <div class="city-overlay" id="cityOverlay">
     <div class="city-modal">
       <img src="images/logo.png" alt="Логотип Туатара" class="city-logo" />
@@ -104,7 +105,7 @@
         </div>
 
         <div class="hero-photo-card reveal reveal-delay-1">
-          <img src="images/hero.jpg" alt="Массажный кабинет Туатара" />
+          <img src="images/hero.jpg" alt="Массажный кабинет Туатара" fetchpriority="high" decoding="async" />
         </div>
       </div>
     </section>
@@ -124,7 +125,7 @@
     <section class="section" id="master">
       <div class="container master-grid">
         <div class="master-photo-card reveal">
-          <img src="images/master.jpg" alt="Елена Певцова" />
+          <img src="images/master.jpg" alt="Елена Певцова" loading="lazy" decoding="async" />
         </div>
 
         <div class="master-text-card reveal reveal-delay-1">
@@ -178,7 +179,7 @@
           </div>
 
           <div class="vertical-card reveal reveal-delay-1">
-            <img src="images/subscription.jpg" alt="Абонемент на массаж" />
+            <img src="images/subscription.jpg" alt="Абонемент на массаж" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -188,7 +189,7 @@
       <div class="container">
         <div class="gift-layout">
           <div class="gift-image-card reveal">
-            <img src="images/gift-certificate.jpg" alt="Подарочный сертификат" />
+            <img src="images/gift-certificate.jpg" alt="Подарочный сертификат" loading="lazy" decoding="async" />
           </div>
 
           <div class="gift-text-card reveal reveal-delay-1">
@@ -306,7 +307,7 @@
 
           <div class="tally-review-wrap">
             <iframe
-              src="https://tally.so/r/xXZezk"
+              data-src="https://tally.so/r/xXZezk"
               loading="lazy"
               width="100%"
               height="420"
@@ -367,7 +368,6 @@
     </div>
   </footer>
 
-  <script type="text/javascript" src="https://dikidi.net/assets/js/widget_record/widget2.min.js?v=1773811740"></script>
   <script type="module" src="script.js"></script>
 </body>
 </html>
