@@ -1,9 +1,9 @@
 const communityLinks = {
   moscow: {
-    telegram: "https://t.me/massag_tuatara"
+    telegram: ""
   },
   saratov: {
-    telegram: "https://t.me/+ZMUEa7Zxp_FmNTEy"
+    telegram: ""
   },
   common: {
     max: "https://max.ru/join/hlgHYwB5WdhcEe7QtqYdl6THn1QmyQCmzUisdlVoTtg",
@@ -47,7 +47,7 @@ const cityConfigs = {
 };
 
 const baseLinks = {
-  telegram: "https://t.me/elena_tuatara_massag",
+  telegram: "",
   whatsapp: "https://wa.me/79042406833",
   max: "https://max.ru/u/f9LHodD0cOLbVHM9ql3WQbXqbwl_xBhF61Ipdc6W-UP6LQ_kdhzG-kq2bZY",
   vk: "https://vk.com/massag_elena_tuatara"
@@ -200,7 +200,11 @@ function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
   const city = cityConfigs[currentCity || "moscow"];
   const messageText = buildMessageText({ serviceTitle, gift });
 
-  const telegramUrl = `${baseLinks.telegram}?text=${encodeURIComponent(messageText)}`;
+  
+  const telegramUrl = (currentCity === "saratov"
+    ? "https://t.me/+ZMUEa7Zxp_FmNTEy"
+    : "https://t.me/massag_tuatara");
+
   const whatsappUrl = `${baseLinks.whatsapp}?text=${encodeURIComponent(messageText)}`;
   const maxUrl = `${baseLinks.max}?text=${encodeURIComponent(messageText)}`;
 
