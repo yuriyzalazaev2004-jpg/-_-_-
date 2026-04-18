@@ -47,7 +47,7 @@ const cityConfigs = {
 };
 
 const baseLinks = {
-  telegram: "https://t.me/elena_tuatara_massag",
+  telegram: "",
   whatsapp: "https://wa.me/79042406833",
   max: "https://max.ru/u/f9LHodD0cOLbVHM9ql3WQbXqbwl_xBhF61Ipdc6W-UP6LQ_kdhzG-kq2bZY",
   vk: "https://vk.com/massag_elena_tuatara"
@@ -200,7 +200,11 @@ function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
   const city = cityConfigs[currentCity || "moscow"];
   const messageText = buildMessageText({ serviceTitle, gift });
 
-  const telegramUrl = `${baseLinks.telegram}?text=${encodeURIComponent(messageText)}`;
+  
+  const telegramUrl = (currentCity === "saratov"
+    ? "https://t.me/+ZMUEa7Zxp_FmNTEy"
+    : "https://t.me/massag_tuatara");
+
   const whatsappUrl = `${baseLinks.whatsapp}?text=${encodeURIComponent(messageText)}`;
   const maxUrl = `${baseLinks.max}?text=${encodeURIComponent(messageText)}`;
 
@@ -291,9 +295,9 @@ function updateCityDependentContent() {
   const topMaxLink = document.getElementById("topMaxLink");
   const stickyActions = document.getElementById("stickyActions");
   const communityTitleCity = document.getElementById("communityTitleCity");
+  const communityActions = document.getElementById("communityActions");
   const topCommunityTelegramLink = document.getElementById("topCommunityTelegramLink");
   const communityTelegramLink = document.getElementById("communityTelegramLink");
-  const communityActions = document.getElementById("communityActions");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
   if (heroCityBadge) heroCityBadge.textContent = city.badge;
@@ -308,16 +312,14 @@ function updateCityDependentContent() {
   if (stickyActions) stickyActions.innerHTML = buildActionButtons({});
   if (communityTitleCity) communityTitleCity.textContent = city.label;
   if (communityActions) communityActions.innerHTML = buildCommunityButtons();
-  if (topCommunityTelegramLink) {
-    topCommunityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
-  }
-  if (communityTelegramLink) {
-    communityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
-  }
+  if (topCommunityTelegramLink) topCommunityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
+  if (communityTelegramLink) communityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
 
   const commonMessage = buildMessageText({});
   if (topTelegramLink) {
-    topTelegramLink.href = `${baseLinks.telegram}?text=${encodeURIComponent(commonMessage)}`;
+    topTelegramLink.href = (currentCity === "saratov"
+      ? "https://t.me/+ZMUEa7Zxp_FmNTEy"
+      : "https://t.me/massag_tuatara");
   }
   if (topWhatsappLink) {
     topWhatsappLink.href = `${baseLinks.whatsapp}?text=${encodeURIComponent(commonMessage)}`;

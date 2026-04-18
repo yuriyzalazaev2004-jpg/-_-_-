@@ -852,7 +852,10 @@ h3 {
 }
 
 .community-strip-text {
-  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text);
 }
 
 .community-inline-links,
@@ -1172,5 +1175,47 @@ h3 {
 @media (min-width: 921px) {
   .community-strip-inner {
     grid-template-columns: minmax(260px, 1fr) minmax(420px, 1.4fr);
+  }
+}
+
+/* Final fixes: community text, mobile spacing, one Telegram by city */
+.community-card p,
+.community-strip-text {
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .community-strip-text,
+  .community-card p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    font-weight: 400 !important;
+  }
+
+  /* remove blank mobile spaces from reveal animation placeholders */
+  .reveal,
+  .reveal-delay-1 {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero.section {
+    padding-top: 12px;
+  }
+
+  .hero-grid {
+    gap: 16px;
+  }
+
+  .hero-photo-card {
+    margin-bottom: 0;
+  }
+
+  .community-strip {
+    padding-top: 10px;
   }
 }
