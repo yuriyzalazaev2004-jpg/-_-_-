@@ -831,6 +831,62 @@ h3 {
   transition-delay: 0.12s;
 }
 
+.community-strip {
+  padding: 14px 0 0;
+}
+
+.community-strip-inner,
+.community-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255,255,255,0.72);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.community-strip-inner {
+  padding: 18px 22px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+.community-strip-text {
+  font-weight: 700;
+}
+
+.community-inline-links,
+.community-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.community-card {
+  padding: 28px;
+  display: grid;
+  gap: 14px;
+}
+
+.community-btn {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent) 0%, #7f9170 100%);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.community-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
 @media (max-width: 1100px) {
   .hero-grid,
   .info-grid,
@@ -851,7 +907,31 @@ h3 {
 
 @media (max-width: 920px) {
   .header-city-switch {
-    display: none;
+    display: block !important;
+    order: 3;
+    width: 100%;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .header-inner {
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .city-switch-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 14px;
+    border-radius: 999px;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: 600;
   }
 
   .burger {
@@ -879,7 +959,8 @@ h3 {
   }
 
   .hero-points,
-  .master-features {
+  .master-features,
+  .community-strip-inner {
     grid-template-columns: 1fr;
   }
 
@@ -943,19 +1024,25 @@ h3 {
   .gift-text-card,
   .master-text-card,
   .review-form-card,
-  .contact-card {
-    padding: 20px;
+  .contact-card,
+  .community-strip-inner,
+  .community-card {
+    padding: 18px;
   }
 
-  .card-actions {
-    grid-template-columns: repeat(2, 1fr);
+  .card-actions,
+  .community-inline-links,
+  .community-actions {
+    grid-template-columns: 1fr;
     gap: 8px;
   }
 
-  .action-btn {
+  .action-btn,
+  .community-btn {
     min-height: 36px;
     font-size: 12px;
     padding: 0 8px;
+    width: 100%;
   }
 
   .slider-block {
@@ -978,7 +1065,14 @@ h3 {
     bottom: 10px;
     padding: 8px;
     gap: 8px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .sticky-actions a.primary {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 70%;
+    max-width: 240px;
   }
 
   .sticky-actions a {
@@ -994,6 +1088,7 @@ h3 {
   .city-buttons {
     grid-template-columns: 1fr;
   }
+
   #reviews {
     margin-top: 40px;
   }
@@ -1007,113 +1102,7 @@ h3 {
     border-radius: 999px;
     margin: 0 auto 20px;
   }
-}
 
-
-.city-switch-btn {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.city-switch-btn:hover {
-  background: #f3eee6;
-}
-
-
-/* --- Tally form --- */
-.tally-review-wrap {
-  width: 100%;
-  overflow: hidden;
-  border-radius: 18px;
-  border: 1px solid var(--line);
-  background: #fff;
-}
-
-.tally-review-wrap iframe {
-  display: block;
-  width: 100%;
-  min-height: 420px;
-  border: 0;
-  background: #fff;
-}
-
-/* --- City switch button --- */
-.city-switch-btn {
-  cursor: pointer;
-  font-weight: 600;
-}
-
-.city-switch-btn:hover {
-  background: #f3eee6;
-}
-
-/* --- Mobile: show the same city switch button as desktop --- */
-@media (max-width: 920px) {
-  .header-city-switch {
-    display: block !important;
-    order: 3;
-    width: 100%;
-    margin-top: 8px;
-    margin-left: 0;
-  }
-
-  .header-inner {
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .city-switch-btn {
-    width: 100%;
-    min-height: 44px;
-    padding: 0 14px;
-    border-radius: 999px;
-    text-align: center;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-  }
-}
-
-/* --- Sticky mobile actions: center main button text --- */
-.sticky-actions a.primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  white-space: nowrap;
-}
-
-@media (max-width: 640px) {
-  .sticky-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .sticky-actions a.primary {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: 70%;
-    max-width: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    white-space: nowrap;
-  }
-}
-
-/* --- Make offer text same feel as gift certificate --- */
-#offer .text-card p,
-#gift .gift-text-card p {
-  font-size: 16px !important;
-  line-height: 1.6 !important;
-  font-weight: 400 !important;
-  color: var(--text) !important;
-}
-
-@media (max-width: 640px) {
   #offer .text-card p,
   #gift .gift-text-card p {
     font-size: 14px !important;
@@ -1138,7 +1127,18 @@ h3 {
   }
 }
 
-/* --- Reviews marker after diplomas --- */
+.city-switch-btn:hover {
+  background: #f3eee6;
+}
+
+#offer .text-card p,
+#gift .gift-text-card p {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  color: var(--text) !important;
+}
+
 #reviews {
   margin-top: 40px;
 }

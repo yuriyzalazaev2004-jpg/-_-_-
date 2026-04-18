@@ -1,3 +1,16 @@
+const communityLinks = {
+  moscow: {
+    telegram: "https://t.me/massag_tuatara"
+  },
+  saratov: {
+    telegram: "https://t.me/+ZMUEa7Zxp_FmNTEy"
+  },
+  common: {
+    max: "https://max.ru/join/hlgHYwB5WdhcEe7QtqYdl6THn1QmyQCmzUisdlVoTtg",
+    vk: "https://vk.ru/massag.tuatara"
+  }
+};
+
 const cityConfigs = {
   moscow: {
     label: "Москва",
@@ -155,7 +168,7 @@ const certImages = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 const storageKeyCity = "tuatara_selected_city";
-let currentCity = localStorage.getItem(storageKeyCity) || "moscow";
+let currentCity = localStorage.getItem(storageKeyCity) || "";
 
 function formatDuration(minutes) {
   const map = {
@@ -196,6 +209,17 @@ function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
     <a class="action-btn" href="${telegramUrl}" target="_blank" rel="noopener">Телеграм</a>
     <a class="action-btn" href="${whatsappUrl}" target="_blank" rel="noopener">Вотсап</a>
     <a class="action-btn" href="${maxUrl}" target="_blank" rel="noopener">Макс</a>
+  `;
+}
+
+function buildCommunityButtons() {
+  const cityKey = currentCity || "moscow";
+  const cityCommunity = communityLinks[cityKey] || communityLinks.moscow;
+
+  return `
+    <a class="community-btn" href="${cityCommunity.telegram}" target="_blank" rel="noopener">Телеграм-канал ${cityConfigs[cityKey].label}</a>
+    <a class="community-btn" href="${communityLinks.common.max}" target="_blank" rel="noopener">Сообщество в Макс</a>
+    <a class="community-btn" href="${communityLinks.common.vk}" target="_blank" rel="noopener">Сообщество VK</a>
   `;
 }
 
@@ -266,6 +290,9 @@ function updateCityDependentContent() {
   const topWhatsappLink = document.getElementById("topWhatsappLink");
   const topMaxLink = document.getElementById("topMaxLink");
   const stickyActions = document.getElementById("stickyActions");
+  const topCommunityLinks = document.getElementById("topCommunityLinks");
+  const communityActions = document.getElementById("communityActions");
+  const communityTitleCity = document.getElementById("communityTitleCity");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
   if (heroCityBadge) heroCityBadge.textContent = city.badge;
@@ -278,6 +305,9 @@ function updateCityDependentContent() {
   if (giftActions) giftActions.innerHTML = buildActionButtons({ gift: true });
   if (contactActions) contactActions.innerHTML = buildActionButtons({});
   if (stickyActions) stickyActions.innerHTML = buildActionButtons({});
+  if (topCommunityLinks) topCommunityLinks.innerHTML = buildCommunityButtons();
+  if (communityActions) communityActions.innerHTML = buildCommunityButtons();
+  if (communityTitleCity) communityTitleCity.textContent = city.label;
 
   const commonMessage = buildMessageText({});
   if (topTelegramLink) {
@@ -291,102 +321,19 @@ function updateCityDependentContent() {
   }
 }
 
-function renderSlider(trackId, items, limit = null) {
+function renderSlider(trackId, items) {
   const track = document.getElementById(trackId);
   if (!track) return;
 
-  const safeItems = Array.isArray(items) ? items : [];
-  const visibleItems = limit ? safeItems.slice(0, limit) : safeItems;
-
-  track.innerHTML = visibleItems
+  track.innerHTML = items
     .map(
-      (item, index) => `
+      (item) => `
         <div class="slider-item">
-          <img
-            src="${item.src}"
-            alt="${item.alt}"
-            data-lightbox="${item.src}"
-            loading="lazy"
-            decoding="async"
-            ${index < 2 ? 'fetchpriority="low"' : ''}
-          />
+          <img src="${item.src}" alt="${item.alt}" data-lightbox="${item.src}" loading="lazy" />
         </div>
       `
     )
     .join("");
-}
-
-
-
-function renderInitialSliders() {
-  renderSlider("reviewsSlider", reviewImages, 3);
-  renderSlider("resultsSlider", resultImages, 4);
-  renderSlider("cabinetSlider", getCabinetImages(), 2);
-  renderSlider("certsSlider", certImages, 4);
-}
-
-function initDeferredSliderLoading() {
-  const sliderMap = {
-    results: () => renderSlider("resultsSlider", resultImages),
-    cabinet: () => renderSlider("cabinetSlider", getCabinetImages()),
-    certs: () => renderSlider("certsSlider", certImages),
-    reviews: () => renderSlider("reviewsSlider", reviewImages)
-  };
-
-  Object.entries(sliderMap).forEach(([sectionId, renderFn]) => {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
-
-    if (!("IntersectionObserver" in window)) {
-      renderFn();
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            renderFn();
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: "250px 0px" }
-    );
-
-    observer.observe(section);
-  });
-}
-
-function initLazyIframeLoading() {
-  const iframes = document.querySelectorAll("iframe[data-src]");
-
-  iframes.forEach((iframe) => {
-    const loadIframe = () => {
-      if (!iframe.src) {
-        iframe.src = iframe.dataset.src;
-      }
-    };
-
-    if (!("IntersectionObserver" in window)) {
-      loadIframe();
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            loadIframe();
-            observer.disconnect();
-          }
-        });
-      },
-      { rootMargin: "300px 0px" }
-    );
-
-    observer.observe(iframe);
-  });
 }
 
 function initSliderButtons() {
@@ -496,17 +443,11 @@ function selectCity(cityKey) {
   localStorage.setItem(storageKeyCity, cityKey);
   updateCityDependentContent();
   renderServices();
-  renderSlider("cabinetSlider", getCabinetImages(), 2);
-
-  const cabinetSection = document.getElementById("cabinet");
-  if (cabinetSection && cabinetSection.getBoundingClientRect().top < window.innerHeight + 300) {
-    renderSlider("cabinetSlider", getCabinetImages());
-  }
+  renderSlider("cabinetSlider", getCabinetImages());
 
   const overlay = document.getElementById("cityOverlay");
   if (overlay) overlay.classList.add("hidden");
 }
-
 
 function initCitySelection() {
   const overlay = document.getElementById("cityOverlay");
@@ -524,34 +465,29 @@ function initCitySelection() {
     });
   }
 
-  if (currentCity !== "moscow" && currentCity !== "saratov") {
-    currentCity = "moscow";
-    localStorage.setItem(storageKeyCity, currentCity);
-  }
-
-  updateCityDependentContent();
-  renderServices();
-  renderSlider("cabinetSlider", getCabinetImages(), 2);
-
-  if (overlay) {
-    overlay.classList.add("hidden");
+  if (currentCity === "moscow" || currentCity === "saratov") {
+    updateCityDependentContent();
+    renderServices();
+    renderSlider("cabinetSlider", getCabinetImages());
+    if (overlay) overlay.classList.add("hidden");
+  } else if (overlay) {
+    overlay.classList.remove("hidden");
+    updateCityDependentContent();
   }
 }
 
-
-
-
 function init() {
-  renderInitialSliders();
-  initDeferredSliderLoading();
+  renderSlider("reviewsSlider", reviewImages);
+  renderSlider("resultsSlider", resultImages);
+  renderSlider("cabinetSlider", getCabinetImages());
+  renderSlider("certsSlider", certImages);
+
   initSliderButtons();
   initLightbox();
   initBurgerMenu();
   initRevealObserver();
   initCitySelection();
-  initLazyIframeLoading();
 }
-
 
 document.addEventListener("DOMContentLoaded", init);
 
