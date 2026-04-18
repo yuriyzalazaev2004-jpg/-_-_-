@@ -1219,3 +1219,13 @@ h3 {
     padding-top: 10px;
   }
 }
+
+
+/* exact same style as hero text */
+.community-strip .lead,
+.community-card .lead {
+  font-size: clamp(17px, 2vw, 21px) !important;
+  color: var(--muted) !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+}
