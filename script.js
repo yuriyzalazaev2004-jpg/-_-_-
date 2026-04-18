@@ -290,8 +290,6 @@ function updateCityDependentContent() {
   const topWhatsappLink = document.getElementById("topWhatsappLink");
   const topMaxLink = document.getElementById("topMaxLink");
   const stickyActions = document.getElementById("stickyActions");
-  const topCommunityLinks = document.getElementById("topCommunityLinks");
-  const communityActions = document.getElementById("communityActions");
   const communityTitleCity = document.getElementById("communityTitleCity");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
@@ -305,8 +303,6 @@ function updateCityDependentContent() {
   if (giftActions) giftActions.innerHTML = buildActionButtons({ gift: true });
   if (contactActions) contactActions.innerHTML = buildActionButtons({});
   if (stickyActions) stickyActions.innerHTML = buildActionButtons({});
-  if (topCommunityLinks) topCommunityLinks.innerHTML = buildCommunityButtons();
-  if (communityActions) communityActions.innerHTML = buildCommunityButtons();
   if (communityTitleCity) communityTitleCity.textContent = city.label;
 
   const commonMessage = buildMessageText({});

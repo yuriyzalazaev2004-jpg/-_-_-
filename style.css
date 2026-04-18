@@ -1152,3 +1152,25 @@ h3 {
   border-radius: 999px;
   margin: 0 auto 20px;
 }
+
+
+/* Desktop/community visibility fix */
+.community-inline-links,
+.community-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.community-inline-links .community-btn,
+.community-actions .community-btn {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+@media (min-width: 921px) {
+  .community-strip-inner {
+    grid-template-columns: minmax(260px, 1fr) minmax(420px, 1.4fr);
+  }
+}
