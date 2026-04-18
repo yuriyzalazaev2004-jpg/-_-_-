@@ -1221,11 +1221,56 @@ h3 {
 }
 
 
-/* exact same style as hero text */
-.community-strip .lead,
-.community-card .lead {
+/* Community text: same visual style as hero lead */
+.community-copy {
   font-size: clamp(17px, 2vw, 21px) !important;
   color: var(--muted) !important;
   font-weight: 400 !important;
   line-height: 1.55 !important;
+  max-width: 780px;
+}
+
+.community-card-text {
+  margin: 0;
+}
+
+.community-inline-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.community-strip-inner {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 16px;
+  align-items: center;
+}
+
+@media (max-width: 920px) {
+  .community-strip-inner {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .community-copy {
+    font-size: clamp(17px, 2vw, 21px) !important;
+    color: var(--muted) !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+  }
+
+  .community-inline-links,
+  .community-actions {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .community-btn {
+    display: inline-flex !important;
+  }
 }
