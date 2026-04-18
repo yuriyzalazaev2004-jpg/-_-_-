@@ -1,9 +1,9 @@
 const communityLinks = {
   moscow: {
-    telegram: ""
+    telegram: "https://t.me/massag_tuatara"
   },
   saratov: {
-    telegram: ""
+    telegram: "https://t.me/+ZMUEa7Zxp_FmNTEy"
   },
   common: {
     max: "https://max.ru/join/hlgHYwB5WdhcEe7QtqYdl6THn1QmyQCmzUisdlVoTtg",
@@ -47,7 +47,7 @@ const cityConfigs = {
 };
 
 const baseLinks = {
-  telegram: "",
+  telegram: "https://t.me/elena_tuatara_massag",
   whatsapp: "https://wa.me/79042406833",
   max: "https://max.ru/u/f9LHodD0cOLbVHM9ql3WQbXqbwl_xBhF61Ipdc6W-UP6LQ_kdhzG-kq2bZY",
   vk: "https://vk.com/massag_elena_tuatara"
@@ -200,11 +200,7 @@ function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
   const city = cityConfigs[currentCity || "moscow"];
   const messageText = buildMessageText({ serviceTitle, gift });
 
-  
-  const telegramUrl = (currentCity === "saratov"
-    ? "https://t.me/+ZMUEa7Zxp_FmNTEy"
-    : "https://t.me/massag_tuatara");
-
+  const telegramUrl = `${baseLinks.telegram}?text=${encodeURIComponent(messageText)}`;
   const whatsappUrl = `${baseLinks.whatsapp}?text=${encodeURIComponent(messageText)}`;
   const maxUrl = `${baseLinks.max}?text=${encodeURIComponent(messageText)}`;
 
@@ -221,7 +217,7 @@ function buildCommunityButtons() {
   const cityCommunity = communityLinks[cityKey] || communityLinks.moscow;
 
   return `
-    <a class="community-btn" href="${cityCommunity.telegram}" target="_blank" rel="noopener">Телеграм-канал ${cityConfigs[cityKey].label}</a>
+    <a class="community-btn" href="${cityCommunity.telegram}" target="_blank" rel="noopener">Телеграм</a>
     <a class="community-btn" href="${communityLinks.common.max}" target="_blank" rel="noopener">Сообщество в Макс</a>
     <a class="community-btn" href="${communityLinks.common.vk}" target="_blank" rel="noopener">Сообщество VK</a>
   `;
@@ -295,6 +291,9 @@ function updateCityDependentContent() {
   const topMaxLink = document.getElementById("topMaxLink");
   const stickyActions = document.getElementById("stickyActions");
   const communityTitleCity = document.getElementById("communityTitleCity");
+  const topCommunityTelegramLink = document.getElementById("topCommunityTelegramLink");
+  const communityTelegramLink = document.getElementById("communityTelegramLink");
+  const communityActions = document.getElementById("communityActions");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
   if (heroCityBadge) heroCityBadge.textContent = city.badge;
@@ -308,6 +307,13 @@ function updateCityDependentContent() {
   if (contactActions) contactActions.innerHTML = buildActionButtons({});
   if (stickyActions) stickyActions.innerHTML = buildActionButtons({});
   if (communityTitleCity) communityTitleCity.textContent = city.label;
+  if (communityActions) communityActions.innerHTML = buildCommunityButtons();
+  if (topCommunityTelegramLink) {
+    topCommunityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
+  }
+  if (communityTelegramLink) {
+    communityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
+  }
 
   const commonMessage = buildMessageText({});
   if (topTelegramLink) {
