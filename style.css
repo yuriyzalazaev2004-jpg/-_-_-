@@ -1314,9 +1314,6 @@ h3 {
   width: 100%;
 }
 
-.sticky-actions {
-  display: none !important;
-}
 
 @media (max-width: 640px) {
   .work-hours-top {
