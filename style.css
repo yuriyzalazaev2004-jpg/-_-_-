@@ -161,17 +161,6 @@ textarea {
   text-decoration: underline;
 }
 
-.work-hours {
-  color: #fff;
-  font-weight: 700;
-  opacity: 0.95;
-}
-
-.work-hours-contact {
-  font-weight: 700;
-  color: var(--accent-dark);
-}
-
 .header {
   position: sticky;
   top: 0;
@@ -508,7 +497,7 @@ h3 {
 
 .card-actions {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
   gap: 10px;
   margin-top: auto;
 }
@@ -1284,4 +1273,70 @@ h3 {
   .community-btn {
     display: inline-flex !important;
   }
+}
+
+
+/* Update: noticeable working hours + only online booking buttons */
+.work-hours-top {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: var(--accent-dark);
+  font-weight: 900;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255,255,255,0.7);
+}
+
+.contact-hours {
+  background: linear-gradient(135deg, var(--accent) 0%, #7f9170 100%) !important;
+  color: #ffffff !important;
+  font-size: 18px;
+  font-weight: 800;
+  box-shadow: 0 12px 24px rgba(108, 124, 93, 0.24);
+}
+
+.contact-hours strong {
+  color: #ffffff;
+}
+
+.card-actions,
+.gift-actions,
+.social-links {
+  grid-template-columns: 1fr !important;
+}
+
+.card-actions .action-btn,
+.gift-actions .action-btn,
+.social-links .action-btn {
+  width: 100%;
+}
+
+.sticky-actions {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .work-hours-top {
+    width: 100%;
+    justify-content: center;
+    min-height: 38px;
+    font-size: 13px;
+  }
+
+  .contact-hours {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .footer {
+    padding-bottom: 24px !important;
+  }
+}
+
+/* Final footer spacing after sticky bar removal */
+.footer {
+  padding-bottom: 24px !important;
 }

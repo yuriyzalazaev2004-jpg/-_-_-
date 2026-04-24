@@ -195,21 +195,9 @@ function buildMessageText({ serviceTitle = "", gift = false }) {
 
 function buildActionButtons({ serviceTitle = "", gift = false } = {}) {
   const city = cityConfigs[currentCity || "moscow"];
-  const messageText = buildMessageText({ serviceTitle, gift });
-
-  
-  const telegramUrl = (currentCity === "saratov"
-    ? "https://t.me/+ZMUEa7Zxp_FmNTEy"
-    : "https://t.me/massag_tuatara");
-
-  const whatsappUrl = `${baseLinks.whatsapp}?text=${encodeURIComponent(messageText)}`;
-  const maxUrl = `${baseLinks.max}?text=${encodeURIComponent(messageText)}`;
 
   return `
     <a class="action-btn primary" href="${city.dikidi}" target="_blank" rel="noopener">Онлайн запись</a>
-    <a class="action-btn" href="${telegramUrl}" target="_blank" rel="noopener">Телеграм</a>
-    <a class="action-btn" href="${whatsappUrl}" target="_blank" rel="noopener">Вотсап</a>
-    <a class="action-btn" href="${maxUrl}" target="_blank" rel="noopener">Макс</a>
   `;
 }
 
@@ -290,7 +278,6 @@ function updateCityDependentContent() {
   const topTelegramLink = document.getElementById("topTelegramLink");
   const topWhatsappLink = document.getElementById("topWhatsappLink");
   const topMaxLink = document.getElementById("topMaxLink");
-  const stickyActions = document.getElementById("stickyActions");
   const communityTitleCity = document.getElementById("communityTitleCity");
   const communityActions = document.getElementById("communityActions");
   const topCommunityTelegramLink = document.getElementById("topCommunityTelegramLink");
@@ -306,7 +293,6 @@ function updateCityDependentContent() {
   if (footerCityText) footerCityText.textContent = city.label;
   if (giftActions) giftActions.innerHTML = buildActionButtons({ gift: true });
   if (contactActions) contactActions.innerHTML = buildActionButtons({});
-  if (stickyActions) stickyActions.innerHTML = buildActionButtons({});
   if (communityTitleCity) communityTitleCity.textContent = city.label;
   if (communityActions) communityActions.innerHTML = buildCommunityButtons();
   if (topCommunityTelegramLink) topCommunityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
