@@ -21,7 +21,6 @@ const cityConfigs = {
       "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.%206",
     dikidi: "https://dikidi.net/#widget=206531",
     prices: {
-      45: "3000 ₽",
       60: "3500 ₽",
       90: "5000 ₽",
       120: "6500 ₽"
@@ -37,7 +36,6 @@ const cityConfigs = {
     dikidi: "https://dikidi.net/#widget=206528",
     prices: {
       30: "1500 ₽",
-      45: "2250 ₽",
       60: "3000 ₽",
       75: "3500 ₽",
       90: "4000 ₽",
@@ -74,16 +72,16 @@ const services = [
     title: "Массаж спины",
     text: "Снимает напряжение в области спины, шеи и плеч, помогает уменьшить дискомфорт и усталость.",
     durations: {
-      moscow: [45, 60],
-      saratov: [30, 45, 60]
+      moscow: [60],
+      saratov: [30, 60]
     }
   },
   {
     title: "Антицеллюлитный моделирующий массаж",
     text: "Стимулирует кровообращение, улучшает состояние кожи и помогает скорректировать контуры тела.",
     durations: {
-      moscow: [45, 60, 90, 120],
-      saratov: [45, 60, 75, 90, 120]
+      moscow: [60, 90, 120],
+      saratov: [60, 75, 90, 120]
     }
   },
   {
@@ -130,8 +128,8 @@ const services = [
     title: "Массаж лица",
     text: "Улучшает тонус кожи, стимулирует кровообращение, профилактика или устранение мелких мимических морщин.",
     durations: {
-      moscow: [45, 60],
-      saratov: [30, 45, 60]
+      moscow: [60],
+      saratov: [30, 60]
     }
   }
 ];
@@ -173,7 +171,6 @@ let currentCity = localStorage.getItem(storageKeyCity) || "";
 function formatDuration(minutes) {
   const map = {
     30: "30 мин",
-    45: "45 мин",
     60: "60 мин",
     75: "1 ч 15 мин",
     90: "1 ч 30 мин",

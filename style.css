@@ -161,6 +161,17 @@ textarea {
   text-decoration: underline;
 }
 
+.work-hours {
+  color: #fff;
+  font-weight: 700;
+  opacity: 0.95;
+}
+
+.work-hours-contact {
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
 .header {
   position: sticky;
   top: 0;
