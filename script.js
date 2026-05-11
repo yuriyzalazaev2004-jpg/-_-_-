@@ -21,9 +21,9 @@ const cityConfigs = {
       "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.%206",
     dikidi: "https://dikidi.net/#widget=206531",
     prices: {
-      60: "5000 ₽",
-      90: "7000 ₽",
-      120: "9000 ₽"
+      60: "3500 ₽",
+      90: "5000 ₽",
+      120: "6500 ₽"
     }
   },
   saratov: {
@@ -300,6 +300,7 @@ function updateCityDependentContent() {
   const communityActions = document.getElementById("communityActions");
   const topCommunityTelegramLink = document.getElementById("topCommunityTelegramLink");
   const communityTelegramLink = document.getElementById("communityTelegramLink");
+  const moscowTemporaryPromo = document.getElementById("moscowTemporaryPromo");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
   if (heroCityBadge) heroCityBadge.textContent = city.badge;
@@ -314,6 +315,9 @@ function updateCityDependentContent() {
   if (stickyActions) stickyActions.innerHTML = buildStickyActionButtons();
   if (communityTitleCity) communityTitleCity.textContent = city.label;
   if (communityActions) communityActions.innerHTML = buildCommunityButtons();
+  if (moscowTemporaryPromo) {
+    moscowTemporaryPromo.hidden = (currentCity || "moscow") !== "moscow";
+  }
   if (topCommunityTelegramLink) topCommunityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
   if (communityTelegramLink) communityTelegramLink.href = (communityLinks[currentCity || "moscow"] || communityLinks.moscow).telegram;
 
