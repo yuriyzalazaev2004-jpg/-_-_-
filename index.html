@@ -8,7 +8,7 @@
     name="description"
     content="Массажный кабинет Туатара. Москва и Саратов. Виды массажа, онлайн-запись, подарочные сертификаты, отзывы, результаты."
   />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260511-2" />
 </head>
 <body>
   <div class="city-overlay" id="cityOverlay">
@@ -123,19 +123,18 @@
     </div>
   </section>
 
-    <section class="temporary-promo section" id="moscowTemporaryPromo" data-city-only="moscow">
+    <section class="moscow-promo-section" id="moscowPromoUntilJuly" aria-label="Временная акция Москва до 1 июля">
       <div class="container">
-        <div class="temporary-promo-card reveal">
+        <div class="moscow-promo-card reveal">
           <img
-            src="images/promo_until_july_1/1.jpeg"
-            alt="Временная акция в Москве до 1 июля"
+            src="images/promo_until_july_1/1.jpg"
+            alt="Акция для Москвы до 1 июля"
             loading="lazy"
-            onerror="document.getElementById('moscowTemporaryPromo').style.display='none';"
+            onerror="this.closest('.moscow-promo-section').hidden = true;"
           />
         </div>
       </div>
     </section>
-
 
     <section class="section" id="services">
       <div class="container">
@@ -413,6 +412,6 @@
     </div>
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script type="module" src="script.js?v=20260511-2"></script>
 </body>
 </html>

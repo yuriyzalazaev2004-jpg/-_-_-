@@ -1339,33 +1339,35 @@ h3 {
 }
 
 
-/* Temporary Moscow promo until July 1 */
-.temporary-promo {
-  padding-top: 40px;
-  padding-bottom: 40px;
+/* Temporary Moscow promo image until July 1 */
+.moscow-promo-section {
+  padding: 20px 0 0;
 }
 
-.temporary-promo[hidden] {
+.moscow-promo-section[hidden] {
   display: none !important;
 }
 
-.temporary-promo-card {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255,255,255,0.72);
-  border-radius: 28px;
-  box-shadow: var(--shadow);
+.moscow-promo-card {
   overflow: hidden;
+  border-radius: calc(var(--radius) + 4px);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow: var(--shadow);
 }
 
-.temporary-promo-card img {
+.moscow-promo-card img {
   width: 100%;
   height: auto;
-  object-fit: cover;
+  display: block;
 }
 
 @media (max-width: 640px) {
-  .temporary-promo {
-    padding-top: 28px;
-    padding-bottom: 28px;
+  .moscow-promo-section {
+    padding-top: 14px;
+  }
+
+  .moscow-promo-card {
+    border-radius: 18px;
   }
 }
