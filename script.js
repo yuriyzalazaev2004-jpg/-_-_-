@@ -21,9 +21,9 @@ const cityConfigs = {
       "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.%206",
     dikidi: "https://dikidi.net/#widget=206531",
     prices: {
-      60: "5000 ₽",
-      90: "7000 ₽",
-      120: "9000 ₽"
+      60: "4000 ₽",
+      90: "5500 ₽",
+      120: "7000 ₽"
     }
   },
   saratov: {
