@@ -134,7 +134,7 @@ const services = [
   }
 ];
 
-const reviewImages = Array.from({ length: 9 }, (_, i) => ({
+const reviewImages = Array.from({ length: 25 }, (_, i) => ({
   src: `images/reviews/review-${i + 1}.jpg`,
   alt: `Отзыв клиента ${i + 1}`
 }));
