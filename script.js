@@ -162,7 +162,7 @@ function getCabinetImages() {
     ];
   }
 
-  return Array.from({ length: 4 }, (_, i) => ({
+  return Array.from({ length: 8 }, (_, i) => ({
     src: `images/cabinet/cabinet-${i + 1}.jpg`,
     alt: `Кабинет ${i + 1}`
   }));
