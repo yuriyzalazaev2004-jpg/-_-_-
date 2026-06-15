@@ -318,18 +318,6 @@ h3 {
   flex-wrap: wrap;
 }
 
-.hero-city-badge {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 0 14px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-dark);
-  font-size: 13px;
-  font-weight: 700;
-}
-
 .lead {
   font-size: clamp(17px, 2vw, 21px);
   color: var(--muted);

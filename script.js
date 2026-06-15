@@ -162,7 +162,7 @@ function getCabinetImages() {
     ];
   }
 
-  return Array.from({ length: 8 }, (_, i) => ({
+  return Array.from({ length: 7 }, (_, i) => ({
     src: `images/cabinet/cabinet-${i + 1}.jpg`,
     alt: `Кабинет ${i + 1}`
   }));
@@ -298,7 +298,6 @@ function updateCityDependentContent() {
   const city = cityConfigs[currentCity || "moscow"];
 
   const currentCityLabel = document.getElementById("currentCityLabel");
-  const heroCityBadge = document.getElementById("heroCityBadge");
   const addressText = document.getElementById("addressText");
   const mapCityTitle = document.getElementById("mapCityTitle");
   const mapAddressText = document.getElementById("mapAddressText");
@@ -317,7 +316,6 @@ function updateCityDependentContent() {
   const communityTelegramLink = document.getElementById("communityTelegramLink");
 
   if (currentCityLabel) currentCityLabel.textContent = city.label;
-  if (heroCityBadge) heroCityBadge.textContent = city.badge;
   if (addressText) addressText.textContent = city.address;
   if (mapCityTitle) mapCityTitle.textContent = city.label;
   if (mapAddressText) mapAddressText.textContent = city.shortAddress;
