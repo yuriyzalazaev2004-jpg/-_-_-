@@ -1325,37 +1325,3 @@ h3 {
 .footer {
   padding-bottom: 24px !important;
 }
-
-
-/* Temporary Moscow promo image until July 1 */
-.moscow-promo-section {
-  padding: 20px 0 0;
-}
-
-.moscow-promo-section[hidden] {
-  display: none !important;
-}
-
-.moscow-promo-card {
-  overflow: hidden;
-  border-radius: calc(var(--radius) + 4px);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(255,255,255,0.7);
-  box-shadow: var(--shadow);
-}
-
-.moscow-promo-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-@media (max-width: 640px) {
-  .moscow-promo-section {
-    padding-top: 14px;
-  }
-
-  .moscow-promo-card {
-    border-radius: 18px;
-  }
-}
