@@ -1325,3 +1325,114 @@ h3 {
 .footer {
   padding-bottom: 24px !important;
 }
+
+
+/* Акции: цветочные карточки перед каталогом услуг */
+.promotions-section {
+  padding-top: 26px;
+  padding-bottom: 34px;
+}
+.promotions-section .section-head {
+  margin-bottom: 22px;
+}
+.promotions-section .section-head p {
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+.promotions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+.promotion-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #e8dfd3;
+  border-radius: 24px;
+  background: #fffdf9;
+  box-shadow: var(--shadow-soft);
+}
+.promotion-card-text {
+  min-height: 300px;
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(224, 155, 167, .22), transparent 28%),
+    radial-gradient(circle at 95% 90%, rgba(230, 190, 119, .25), transparent 30%),
+    linear-gradient(135deg, #fffaf5, #f6eee5);
+}
+.promotion-kicker {
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 10px;
+  color: var(--accent-dark);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.promotion-card h3 {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.2;
+}
+.promotion-card p {
+  position: relative;
+  z-index: 1;
+  max-width: 440px;
+  margin: 0;
+  color: var(--muted);
+}
+.promotion-flower {
+  position: absolute;
+  top: 12px;
+  right: 22px;
+  color: #d8a1a7;
+  opacity: .7;
+  font-size: 72px;
+  line-height: 1;
+}
+.promotion-flower-bottom {
+  top: auto;
+  right: auto;
+  left: 16px;
+  bottom: -22px;
+  color: #d8b77c;
+  font-size: 94px;
+  opacity: .38;
+}
+.promotion-card-new {
+  display: grid;
+  grid-template-columns: .82fr 1fr;
+  align-items: stretch;
+  background: #fff;
+}
+.promotion-image-wrap {
+  min-height: 300px;
+  overflow: hidden;
+  background: #eee6dc;
+}
+.promotion-image-wrap img {
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+}
+.promotion-copy {
+  padding: 28px 24px;
+  align-self: center;
+}
+@media (max-width: 760px) {
+  .promotions-section { padding-top: 18px; padding-bottom: 26px; }
+  .promotions-grid { grid-template-columns: 1fr; gap: 16px; }
+  .promotion-card-text { min-height: 230px; padding: 28px 22px; }
+  .promotion-card-new { grid-template-columns: 1fr; }
+  .promotion-image-wrap, .promotion-image-wrap img { min-height: 190px; max-height: 220px; }
+  .promotion-copy { padding: 22px; }
+  .promotion-card h3 { font-size: 24px; }
+}
