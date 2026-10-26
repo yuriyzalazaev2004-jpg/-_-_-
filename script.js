@@ -21,9 +21,10 @@ const cityConfigs = {
       "https://yandex.ru/maps/?text=%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D1%83%D0%BB.%20%D0%91%D0%B5%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F%2C%20%D0%B4.%206",
     dikidi: "https://dikidi.net/#widget=206531",
     prices: {
-      60: "5000 ₽",
-      90: "7000 ₽",
-      120: "9000 ₽"
+      45: "3000 ₽",
+      60: "3800 ₽",
+      90: "5500 ₽",
+      120: "7000 ₽"
     }
   },
   saratov: {
@@ -35,11 +36,10 @@ const cityConfigs = {
       "https://yandex.ru/maps/?text=%D0%A1%D0%B0%D1%80%D0%B0%D1%82%D0%BE%D0%B2%2C%20%D1%83%D0%BB.%20%D0%9A%D1%83%D0%B7%D0%BD%D0%B5%D1%86%D0%BE%D0%B2%D0%B0%2C%20%D0%B4.%207",
     dikidi: "https://dikidi.net/#widget=206528",
     prices: {
-      30: "1500 ₽",
-      60: "3000 ₽",
-      75: "3500 ₽",
-      90: "4000 ₽",
-      120: "5000 ₽"
+      45: "3000 ₽",
+      60: "3800 ₽",
+      90: "5500 ₽",
+      120: "7000 ₽"
     }
   }
 };
@@ -74,6 +74,15 @@ const services = [
     durations: {
       moscow: [60],
       saratov: [30, 60]
+    }
+  },
+  {
+    title: "Массаж шейно-воротниковой зоны",
+    text: "Дополнительная проработка шеи и плеч после массажа спины.",
+    image: "./images/service/service-12.jpg",
+    durations: {
+      moscow: [45],
+      saratov: [45]
     }
   },
   {
@@ -179,9 +188,10 @@ let currentCity = localStorage.getItem(storageKeyCity) || "";
 function formatDuration(minutes) {
   const map = {
     30: "30 мин",
-    60: "60 мин",
+    45: "45 мин",
+    60: "1 ч",
     75: "1 ч 15 мин",
-    90: "1 ч 30 мин",
+    90: "1,5 ч",
     120: "2 ч"
   };
   return map[minutes] || `${minutes} мин`;
@@ -263,7 +273,7 @@ function renderServices() {
         <article class="service-card reveal ${index % 2 ? "reveal-delay-1" : ""}">
           <img
             class="service-photo"
-            src="./images/service/service-${index + 1}.jpg"
+            src="${service.image || `./images/service/service-${index + 1}.jpg`}"
             alt="${service.title}"
             loading="lazy"
             onerror="this.onerror=null; this.src='./images/hero.jpg';"
